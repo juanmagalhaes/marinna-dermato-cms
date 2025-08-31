@@ -1,0 +1,52 @@
+{
+  "kind": "singleType",
+  "collectionName": "home_pages",
+  "info": {
+    "singularName": "home-page",
+    "pluralName": "home-pages",
+    "displayName": "Home Page",
+    "description": "Content for the home page"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "hero": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.hero",
+      "required": true
+    },
+    "highlights": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.highlight"
+    },
+    "aboutPreview": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.about-preview"
+    },
+    "featuredTreatments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::treatment.treatment"
+    },
+    "publicationsPreview": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::publication.publication"
+    },
+    "faqPreview": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::faq.faq"
+    },
+    "locationBlock": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.location-block"
+    }
+  }
+}

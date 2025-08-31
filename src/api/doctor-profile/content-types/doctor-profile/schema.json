@@ -1,0 +1,58 @@
+{
+  "kind": "singleType",
+  "collectionName": "doctor_profiles",
+  "info": {
+    "singularName": "doctor-profile",
+    "pluralName": "doctor-profiles",
+    "displayName": "Doctor Profile",
+    "description": "Doctor's professional profile information"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "fullName": {
+      "type": "string",
+      "required": true
+    },
+    "crm": {
+      "type": "string",
+      "required": true
+    },
+    "rqe": {
+      "type": "string",
+      "required": true
+    },
+    "photo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "miniBio": {
+      "type": "richtext",
+      "required": false
+    },
+    "phones": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.phone"
+    },
+    "email": {
+      "type": "email",
+      "required": false
+    },
+    "social": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.social"
+    },
+    "address": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.address",
+      "required": true
+    }
+  }
+}

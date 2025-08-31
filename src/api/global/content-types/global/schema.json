@@ -4,8 +4,8 @@
   "info": {
     "singularName": "global",
     "pluralName": "globals",
-    "displayName": "Global",
-    "description": "Define global settings"
+    "displayName": "Global Settings",
+    "description": "Global website settings"
   },
   "options": {
     "draftAndPublish": false
@@ -20,16 +20,11 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["images", "files", "videos"]
+      "allowedTypes": ["images"]
     },
     "siteDescription": {
       "type": "text",
       "required": true
-    },
-    "defaultSeo": {
-      "type": "component",
-      "repeatable": false,
-      "component": "shared.seo"
     }
   }
 }

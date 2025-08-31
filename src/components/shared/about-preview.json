@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_shared_about_previews",
+  "info": {
+    "displayName": "About Preview",
+    "icon": "user",
+    "description": "About section preview with title, text and image"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "text": {
+      "type": "richtext",
+      "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": ["images"]
+    }
+  }
+}

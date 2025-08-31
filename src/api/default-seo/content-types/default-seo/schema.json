@@ -1,0 +1,40 @@
+{
+  "kind": "singleType",
+  "collectionName": "default_seos",
+  "info": {
+    "singularName": "default-seo",
+    "pluralName": "default-seos",
+    "displayName": "Default SEO",
+    "description": "Default SEO settings for the website"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "defaultTitle": {
+      "type": "string",
+      "required": true
+    },
+    "titleTemplate": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "openGraphImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "twitterImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    }
+  }
+}

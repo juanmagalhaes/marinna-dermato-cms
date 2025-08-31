@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_shared_location_blocks",
+  "info": {
+    "displayName": "Location Block",
+    "icon": "location-arrow",
+    "description": "Location section with map embed"
+  },
+  "options": {},
+  "attributes": {
+    "mapEmbedUrl": {
+      "type": "text",
+      "required": true
+    }
+  }
+}
