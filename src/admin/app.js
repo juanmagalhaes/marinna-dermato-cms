@@ -1,4 +1,4 @@
-import ptBR from "../extensions/translations/pt-BR.json";
+import ptBR from "./extensions/translations/pt-BR.json";
 
 export default {
   config: {
