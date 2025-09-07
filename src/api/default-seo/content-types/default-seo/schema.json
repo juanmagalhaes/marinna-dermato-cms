@@ -24,6 +24,22 @@
       "type": "text",
       "required": true
     },
+    "siteName": {
+      "type": "string",
+      "required": true
+    },
+    "locale": {
+      "type": "string",
+      "required": true
+    },
+    "keywords": {
+      "type": "string",
+      "required": false
+    },
+    "canonicalUrl": {
+      "type": "string",
+      "required": false
+    },
     "openGraphImage": {
       "type": "media",
       "multiple": false,
