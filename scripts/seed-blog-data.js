@@ -5,16 +5,8 @@
  * Run with: node scripts/seed-blog-data.js
  */
 
-const { Strapi } = require('@strapi/strapi');
-
 async function seedBlogData() {
-  const strapi = new Strapi({
-    appDir: process.cwd(),
-    distDir: './dist',
-  });
-
   try {
-    await strapi.load();
 
     console.log('🌱 Seeding blog data...');
 
@@ -156,7 +148,7 @@ async function seedBlogData() {
           siteName: 'Dra. Marinna - Dermatologista',
           locale: 'pt_BR',
           keywords: 'minoxidil, queda cabelo, tratamento capilar, dermatologia, alopecia',
-          ogTitle: 'Minoxidil: Queda de Cabelo no Início do Tratamento - Dra. Marinna',
+          ogTitle: 'Minoxidil: Queda Inicial do Cabelo - Dra. Marinna',
           ogDescription: 'Entenda por que o cabelo cai no início do uso do minoxidil e como lidar com essa fase natural do tratamento capilar.',
           twitterCard: 'summary_large_image',
         },
@@ -221,11 +213,25 @@ async function seedBlogData() {
     console.log('🎉 Blog data seeding completed successfully!');
   } catch (error) {
     console.error('❌ Error seeding blog data:', error);
-    process.exit(1);
-  } finally {
-    await strapi.destroy();
+    throw error;
   }
 }
 
-// Run the seeding function
-seedBlogData();
+async function main() {
+  const { createStrapi, compileStrapi } = require('@strapi/strapi');
+
+  const appContext = await compileStrapi();
+  const app = await createStrapi(appContext).load();
+
+  app.log.level = 'error';
+
+  await seedBlogData();
+  await app.destroy();
+
+  process.exit(0);
+}
+
+main().catch((error) => {
+  console.error(error);
+  process.exit(1);
+});
