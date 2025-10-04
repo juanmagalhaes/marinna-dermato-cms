@@ -1,5 +1,4 @@
 'use strict';
-const bootstrap = require("./bootstrap");
 
 module.exports = {
   /**
@@ -17,5 +16,22 @@ module.exports = {
    * This gives you an opportunity to set up your data model,
    * run jobs, or perform some special logic.
    */
-  bootstrap,
+  bootstrap({ strapi }) {
+    // Global hook to enforce pt_BR locale in SEO components
+    strapi.db.lifecycles.subscribe({
+      models: ['article', 'default-seo'],
+      beforeCreate(event) {
+        const { data } = event.params;
+        if (data && data.seo) {
+          data.seo.locale = 'pt_BR';
+        }
+      },
+      beforeUpdate(event) {
+        const { data } = event.params;
+        if (data && data.seo) {
+          data.seo.locale = 'pt_BR';
+        }
+      },
+    });
+  },
 };

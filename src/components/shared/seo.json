@@ -1,26 +1,63 @@
 {
   "collectionName": "components_shared_seos",
   "info": {
-    "name": "Seo",
-    "icon": "allergies",
-    "displayName": "Seo",
-    "description": ""
+    "displayName": "SEO",
+    "description": "SEO metadata component for articles and pages"
   },
   "options": {},
   "attributes": {
-    "metaTitle": {
+    "defaultTitle": {
       "type": "string",
-      "required": true
+      "maxLength": 60
     },
-    "metaDescription": {
+    "titleTemplate": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "description": {
       "type": "text",
+      "maxLength": 160
+    },
+    "siteName": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "locale": {
+      "type": "string",
+      "maxLength": 10,
+      "default": "pt_BR",
       "required": true
     },
-    "shareImage": {
+    "keywords": {
+      "type": "string",
+      "maxLength": 255
+    },
+    "canonicalUrl": {
+      "type": "string",
+      "regex": "^https?://.*"
+    },
+    "openGraphImage": {
       "type": "media",
       "multiple": false,
-      "required": false,
       "allowedTypes": ["images"]
+    },
+    "twitterImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "ogTitle": {
+      "type": "string",
+      "maxLength": 60
+    },
+    "ogDescription": {
+      "type": "text",
+      "maxLength": 160
+    },
+    "twitterCard": {
+      "type": "enumeration",
+      "enum": ["summary", "summary_large_image"],
+      "default": "summary_large_image"
     }
   }
 }

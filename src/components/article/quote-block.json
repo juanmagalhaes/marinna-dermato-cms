@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_article_quote_blocks",
+  "info": {
+    "displayName": "Quote Block",
+    "description": "Quote content block with author and source information"
+  },
+  "options": {},
+  "attributes": {
+    "quote": {
+      "type": "text",
+      "required": true,
+      "maxLength": 1000
+    },
+    "author": {
+      "type": "string",
+      "maxLength": 255
+    },
+    "source": {
+      "type": "string",
+      "maxLength": 500
+    },
+    "style": {
+      "type": "enumeration",
+      "enum": ["default", "highlighted", "minimal"],
+      "default": "default"
+    },
+    "alignment": {
+      "type": "enumeration",
+      "enum": ["left", "center", "right"],
+      "default": "center"
+    }
+  }
+}

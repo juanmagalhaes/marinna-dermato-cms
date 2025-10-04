@@ -1,0 +1,38 @@
+{
+  "collectionName": "components_article_image_blocks",
+  "info": {
+    "displayName": "Image Block",
+    "description": "Image content block with caption and styling options"
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": ["images"]
+    },
+    "caption": {
+      "type": "string",
+      "maxLength": 500
+    },
+    "alignment": {
+      "type": "enumeration",
+      "enum": ["left", "center", "right", "full-width"],
+      "default": "center"
+    },
+    "size": {
+      "type": "enumeration",
+      "enum": ["small", "medium", "large", "full"],
+      "default": "medium"
+    },
+    "link": {
+      "type": "string",
+      "regex": "^https?://.*"
+    },
+    "alt": {
+      "type": "string",
+      "maxLength": 255
+    }
+  }
+}

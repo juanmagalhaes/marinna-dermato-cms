@@ -1,0 +1,47 @@
+{
+  "collectionName": "components_article_video_blocks",
+  "info": {
+    "displayName": "Video Block",
+    "description": "Video content block supporting Instagram, YouTube, Vimeo and uploads"
+  },
+  "options": {},
+  "attributes": {
+    "videoType": {
+      "type": "enumeration",
+      "enum": ["instagram", "youtube", "vimeo", "upload"],
+      "required": true
+    },
+    "videoUrl": {
+      "type": "string",
+      "required": true,
+      "regex": "^https?://.*"
+    },
+    "thumbnail": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "caption": {
+      "type": "string",
+      "maxLength": 500
+    },
+    "alignment": {
+      "type": "enumeration",
+      "enum": ["left", "center", "right", "full-width"],
+      "default": "center"
+    },
+    "size": {
+      "type": "enumeration",
+      "enum": ["small", "medium", "large", "full"],
+      "default": "medium"
+    },
+    "autoplay": {
+      "type": "boolean",
+      "default": false
+    },
+    "muted": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_article_text_blocks",
+  "info": {
+    "displayName": "Text Block",
+    "description": "Rich text content block with WYSIWYG editor"
+  },
+  "options": {},
+  "attributes": {
+    "content": {
+      "type": "richtext",
+      "required": true
+    },
+    "alignment": {
+      "type": "enumeration",
+      "enum": ["left", "center", "right"],
+      "default": "left"
+    },
+    "backgroundColor": {
+      "type": "string",
+      "regex": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+    },
+    "padding": {
+      "type": "enumeration",
+      "enum": ["none", "small", "medium", "large"],
+      "default": "medium"
+    }
+  }
+}

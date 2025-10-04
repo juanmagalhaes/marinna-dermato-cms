@@ -30,7 +30,8 @@
     },
     "locale": {
       "type": "string",
-      "required": true
+      "required": true,
+      "default": "pt_BR"
     },
     "keywords": {
       "type": "string",
