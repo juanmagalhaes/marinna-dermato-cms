@@ -1,15 +1,13 @@
-# 🚀 Getting started with Strapi
+# Strapi CMS — Marinna Dermato
 
-Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage your project in seconds.
+Projeto Strapi com conteúdo do site da Dra. Marinna. Inclui content types para Blog/SEO e padronizações específicas.
 
-### `develop`
-
-Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-develop)
+## Scripts
 
 ```
-npm run develop
-# or
-yarn develop
+pnpm develop   # Dev com autoReload
+pnpm start     # Produção
+pnpm build     # Build do admin
 ```
 
 ### `start`
@@ -32,15 +30,35 @@ npm run build
 yarn build
 ```
 
-## ⚙️ Deployment
+## Conteúdo e Modelagem
 
-Strapi gives you many possible deployment options for your project including [Strapi Cloud](https://cloud.strapi.io). Browse the [deployment section of the documentation](https://docs.strapi.io/dev-docs/deployment) to find the best solution for your use case.
+- Content Types:
+  - `Article` (com Dynamic Zone: `article.text-block`, `image-block`, `video-block`, `quote-block`)
+  - `Category`, `Tag`
+  - `Default SEO`
+- Componentes:
+  - `shared.seo` (locale obrigatório e default: `pt_BR`)
+  - Blocos `article.*`
 
-```
-yarn strapi deploy
-```
+Padronização de SEO: ver `docs/seo-standardization.md`.
+Enforcement de `locale: pt_BR`: ver `docs/locale-enforcement.md`.
 
-## 📚 Learn more
+## Integração com Frontend
+
+- Webhooks apontam para o Next.js em `/api/revalidate`
+- O frontend mescla dados do CMS com `FALLBACK_DATA` (merge profundo sem concatenar arrays)
+- `robots.txt` usa host dinâmico via helper no frontend
+
+Scripts úteis em `scripts/`:
+- `setup-webhook.js`, `test-webhook.js`
+- `seed-blog-data.js` (local): cria tags/categorias e um artigo exemplo
+
+Importante (Cloud): seeding via REST pode exigir permissões e ter timeouts. Prefira criar o artigo pelo Admin quando necessário.
+
+Troubleshooting Cloud:
+- Erro de patch `node-schedule.patch`: regenere `pnpm-lock.yaml`
+- 404/405 em novos CTs: publicar, revisar permissões (Public find/findOne)
+- Relações manyToMany: usar `inversedBy`/`mappedBy` corretamente
 
 - [Resource center](https://strapi.io/resource-center) - Strapi resource center.
 - [Strapi documentation](https://docs.strapi.io) - Official Strapi documentation.
@@ -48,7 +66,7 @@ yarn strapi deploy
 - [Strapi blog](https://strapi.io/blog) - Official Strapi blog containing articles made by the Strapi team and the community.
 - [Changelog](https://strapi.io/changelog) - Find out about the Strapi product updates, new features and general improvements.
 
-Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/strapi). Your feedback and contributions are welcome!
+Documentação Strapi: https://docs.strapi.io
 
 ## ✨ Community
 
