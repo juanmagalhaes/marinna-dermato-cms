@@ -1,5 +1,104 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface ArticleImageBlock extends Struct.ComponentSchema {
+  collectionName: 'components_article_image_blocks';
+  info: {
+    description: 'Image content block with caption and styling options';
+    displayName: 'Image Block';
+  };
+  attributes: {
+    alignment: Schema.Attribute.Enumeration<
+      ['left', 'center', 'right', 'full-width']
+    > &
+      Schema.Attribute.DefaultTo<'center'>;
+    alt: Schema.Attribute.String &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 255;
+      }>;
+    caption: Schema.Attribute.String &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 500;
+      }>;
+    image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    link: Schema.Attribute.String;
+    size: Schema.Attribute.Enumeration<['small', 'medium', 'large', 'full']> &
+      Schema.Attribute.DefaultTo<'medium'>;
+  };
+}
+
+export interface ArticleQuoteBlock extends Struct.ComponentSchema {
+  collectionName: 'components_article_quote_blocks';
+  info: {
+    description: 'Quote content block with author and source information';
+    displayName: 'Quote Block';
+  };
+  attributes: {
+    alignment: Schema.Attribute.Enumeration<['left', 'center', 'right']> &
+      Schema.Attribute.DefaultTo<'center'>;
+    author: Schema.Attribute.String &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 255;
+      }>;
+    quote: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 1000;
+      }>;
+    source: Schema.Attribute.String &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 500;
+      }>;
+    style: Schema.Attribute.Enumeration<['default', 'highlighted', 'minimal']> &
+      Schema.Attribute.DefaultTo<'default'>;
+  };
+}
+
+export interface ArticleTextBlock extends Struct.ComponentSchema {
+  collectionName: 'components_article_text_blocks';
+  info: {
+    description: 'Rich text content block with WYSIWYG editor';
+    displayName: 'Text Block';
+  };
+  attributes: {
+    alignment: Schema.Attribute.Enumeration<['left', 'center', 'right']> &
+      Schema.Attribute.DefaultTo<'left'>;
+    backgroundColor: Schema.Attribute.String;
+    content: Schema.Attribute.RichText & Schema.Attribute.Required;
+    padding: Schema.Attribute.Enumeration<
+      ['none', 'small', 'medium', 'large']
+    > &
+      Schema.Attribute.DefaultTo<'medium'>;
+  };
+}
+
+export interface ArticleVideoBlock extends Struct.ComponentSchema {
+  collectionName: 'components_article_video_blocks';
+  info: {
+    description: 'Video content block supporting Instagram, YouTube, Vimeo and uploads';
+    displayName: 'Video Block';
+  };
+  attributes: {
+    alignment: Schema.Attribute.Enumeration<
+      ['left', 'center', 'right', 'full-width']
+    > &
+      Schema.Attribute.DefaultTo<'center'>;
+    autoplay: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    caption: Schema.Attribute.String &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 500;
+      }>;
+    muted: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    size: Schema.Attribute.Enumeration<['small', 'medium', 'large', 'full']> &
+      Schema.Attribute.DefaultTo<'medium'>;
+    thumbnail: Schema.Attribute.Media<'images'>;
+    videoType: Schema.Attribute.Enumeration<
+      ['instagram', 'youtube', 'vimeo', 'upload']
+    > &
+      Schema.Attribute.Required;
+    videoUrl: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface SharedAboutPreview extends Struct.ComponentSchema {
   collectionName: 'components_shared_about_previews';
   info: {
@@ -126,15 +225,51 @@ export interface SharedRichText extends Struct.ComponentSchema {
 export interface SharedSeo extends Struct.ComponentSchema {
   collectionName: 'components_shared_seos';
   info: {
-    description: '';
-    displayName: 'Seo';
-    icon: 'allergies';
-    name: 'Seo';
+    description: 'SEO metadata component for articles and pages';
+    displayName: 'SEO';
   };
   attributes: {
-    metaDescription: Schema.Attribute.Text & Schema.Attribute.Required;
-    metaTitle: Schema.Attribute.String & Schema.Attribute.Required;
-    shareImage: Schema.Attribute.Media<'images'>;
+    canonicalUrl: Schema.Attribute.String;
+    defaultTitle: Schema.Attribute.String &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 60;
+      }>;
+    description: Schema.Attribute.Text &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 160;
+      }>;
+    keywords: Schema.Attribute.String &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 255;
+      }>;
+    locale: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 10;
+      }> &
+      Schema.Attribute.DefaultTo<'pt_BR'>;
+    ogDescription: Schema.Attribute.Text &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 160;
+      }>;
+    ogTitle: Schema.Attribute.String &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 60;
+      }>;
+    openGraphImage: Schema.Attribute.Media<'images'>;
+    siteName: Schema.Attribute.String &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 100;
+      }>;
+    titleTemplate: Schema.Attribute.String &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 100;
+      }>;
+    twitterCard: Schema.Attribute.Enumeration<
+      ['summary', 'summary_large_image']
+    > &
+      Schema.Attribute.DefaultTo<'summary_large_image'>;
+    twitterImage: Schema.Attribute.Media<'images'>;
   };
 }
 
@@ -167,6 +302,10 @@ export interface SharedSocial extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'article.image-block': ArticleImageBlock;
+      'article.quote-block': ArticleQuoteBlock;
+      'article.text-block': ArticleTextBlock;
+      'article.video-block': ArticleVideoBlock;
       'shared.about-preview': SharedAboutPreview;
       'shared.address': SharedAddress;
       'shared.hero': SharedHero;
