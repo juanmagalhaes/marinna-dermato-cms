@@ -4,7 +4,7 @@ module.exports = () => ({
     config: {
       endpoint: '/graphql',
       shadowCRUD: true,
-      playgroundAlways: false,
+      landingPage: true, // Habilita o Sandbox em produção (temporário para debug)
       depthLimit: 7,
       amountLimit: 100,
       apolloServer: {
