@@ -21,8 +21,10 @@
       "required": true
     },
     "year": {
-      "type": "integer",
-      "required": true
+      "type": "string",
+      "required": true,
+      "minLength": 4,
+      "maxLength": 4
     },
     "doiOrUrl": {
       "type": "string"

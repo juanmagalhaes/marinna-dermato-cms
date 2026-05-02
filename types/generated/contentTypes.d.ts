@@ -674,7 +674,12 @@ export interface ApiPublicationPublication extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    year: Schema.Attribute.Integer & Schema.Attribute.Required;
+    year: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        minLength: 4;
+        maxLength: 4;
+      }>;
   };
 }
 
