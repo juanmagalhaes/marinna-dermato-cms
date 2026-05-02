@@ -2,6 +2,9 @@
 
 /**
  * article router — core REST + custom routes
+ *
+ * Do not spread `defaultRouter.routes` at module load time: the getter needs
+ * a bootstrapped Strapi (`strapi.contentType`). Defer merge via `get routes()`.
  */
 
 const { createCoreRouter } = require('@strapi/strapi').factories;
@@ -30,5 +33,9 @@ const customRoutes = [
 ];
 
 module.exports = {
-  routes: [...defaultRouter.routes, ...customRoutes],
+  type: defaultRouter.type,
+  prefix: defaultRouter.prefix,
+  get routes() {
+    return [...defaultRouter.routes, ...customRoutes];
+  },
 };
