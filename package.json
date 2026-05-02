@@ -1,8 +1,8 @@
 {
-  "name": "my-app-name",
+  "name": "marinna-dermato-cms",
   "version": "0.1.0",
   "private": true,
-  "description": "A Strapi application",
+  "description": "Strapi CMS — Marinna Dermato",
   "scripts": {
     "build": "strapi build",
     "deploy": "strapi deploy",
@@ -27,5 +27,8 @@
   "engines": {
     "node": ">=18.0.0 <=22.x.x",
     "npm": ">=6.0.0"
+  },
+  "devDependencies": {
+    "baseline-browser-mapping": "^2.10.25"
   }
 }
