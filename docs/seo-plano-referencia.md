@@ -47,12 +47,12 @@ Documento único de prioridades, glossário e decisões. Detalhes de modelagem: 
 
 ### Default SEO (single type)
 
-- Obrigatórios: `defaultTitle`, `titleTemplate`, `description`, `siteName`
+- Obrigatórios: `defaultTitle`, `description`, `siteName`
 - Opcionais: `keywords`, `ogTitle`, `ogDescription`, `twitterCard`, `openGraphImage`, `twitterImage`
 
 ### `shared.seo` (artigos — blog)
 
-- Alinhado ao default: `defaultTitle`, `titleTemplate`, `description`, `siteName`, `keywords`, `openGraphImage`, `twitterImage`, `ogTitle`, `ogDescription`, `twitterCard`
+- Alinhado ao default: `defaultTitle`, `description`, `siteName`, `keywords`, `openGraphImage`, `twitterImage`, `ogTitle`, `ogDescription`, `twitterCard`
 - **Sem** `locale`, **sem** `canonicalUrl`
 
 ---

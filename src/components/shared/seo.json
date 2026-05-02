@@ -10,10 +10,6 @@
       "type": "string",
       "maxLength": 60
     },
-    "titleTemplate": {
-      "type": "string",
-      "maxLength": 100
-    },
     "description": {
       "type": "text",
       "maxLength": 160

@@ -89,7 +89,6 @@
 
 #### Fields:
 - `defaultTitle` (string) - Page title
-- `titleTemplate` (string) - Title template with %s placeholder
 - `description` (text) - Meta description
 - `siteName` (string) - Site name
 - `keywords` (string) - SEO keywords
@@ -139,7 +138,6 @@ const article = await strapi.entityService.create('api::article.article', {
     publishedAt: new Date().toISOString(),
     seo: {
       defaultTitle: 'Cuidados com a Pele no Verão',
-      titleTemplate: '%s | Dra. Marinna - Dermatologista',
       description: 'Aprenda os cuidados essenciais...',
       siteName: 'Dra. Marinna - Dermatologista',
       keywords: 'pele, verão, protetor solar, dermatologia',

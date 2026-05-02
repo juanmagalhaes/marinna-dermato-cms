@@ -254,10 +254,6 @@ export interface SharedSeo extends Struct.ComponentSchema {
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 100;
       }>;
-    titleTemplate: Schema.Attribute.String &
-      Schema.Attribute.SetMinMaxLength<{
-        maxLength: 100;
-      }>;
     twitterCard: Schema.Attribute.Enumeration<
       ['summary', 'summary_large_image']
     > &

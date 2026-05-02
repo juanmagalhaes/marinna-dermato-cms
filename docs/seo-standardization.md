@@ -20,7 +20,6 @@
 ```json
 {
   "defaultTitle": "string",
-  "titleTemplate": "string",
   "description": "text",
   "siteName": "string",
   "keywords": "string",
@@ -47,9 +46,8 @@
 - Better social media sharing support
 
 ### **3. Flexibility**
-- `titleTemplate` allows dynamic title generation
+- Títulos compostos por rota ficam no Next (não há `titleTemplate` no CMS)
 - Separate images for Open Graph and Twitter
-- Locale support for internationalization
 
 ### **4. Maintainability**
 - Single source of truth for SEO field structure
@@ -65,7 +63,6 @@
    - `seo.ogImage` → `seo.openGraphImage`
 
 2. Handle new fields:
-   - `seo.titleTemplate` for dynamic titles
    - `seo.siteName` for site branding
    - `seo.twitterImage` for Twitter/X link previews
 
@@ -76,12 +73,8 @@
 
 ## 📝 Usage Examples
 
-### **Title Generation:**
-```javascript
-// Using titleTemplate
-const title = seo.titleTemplate.replace('%s', seo.defaultTitle);
-// Result: "Cuidados com a Pele no Verão | Dra. Marinna - Dermatologista"
-```
+### **Title generation**
+No CMS: use `seo.defaultTitle` (ou título da página definido no Next). Sufixos e padrões por rota são código no frontend.
 
 ### **Social Media Images:**
 ```javascript

@@ -143,7 +143,6 @@ async function seedBlogData() {
         publishedAt: new Date().toISOString(),
         seo: {
           defaultTitle: 'Minoxidil: Queda de Cabelo no Início do Tratamento',
-          titleTemplate: '%s | Dra. Marinna - Dermatologista',
           description: 'Entenda por que o cabelo cai no início do uso do minoxidil e como lidar com essa fase natural do tratamento capilar.',
           siteName: 'Dra. Marinna - Dermatologista',
           keywords: 'minoxidil, queda cabelo, tratamento capilar, dermatologia, alopecia',

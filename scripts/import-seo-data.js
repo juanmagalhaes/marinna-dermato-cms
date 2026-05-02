@@ -51,6 +51,7 @@ function cleanSeoData(seoData) {
   delete cleanData.locale;
   delete cleanData.canonicalUrl;
   delete cleanData.ogLocale;
+  delete cleanData.titleTemplate;
 
   return cleanData;
 }

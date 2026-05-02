@@ -497,7 +497,6 @@ export interface ApiDefaultSeoDefaultSeo extends Struct.SingleTypeSchema {
     openGraphImage: Schema.Attribute.Media<'images'>;
     publishedAt: Schema.Attribute.DateTime;
     siteName: Schema.Attribute.String & Schema.Attribute.Required;
-    titleTemplate: Schema.Attribute.String & Schema.Attribute.Required;
     twitterCard: Schema.Attribute.Enumeration<
       ['summary_large_image', 'summary']
     > &
