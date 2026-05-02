@@ -229,7 +229,6 @@ export interface SharedSeo extends Struct.ComponentSchema {
     displayName: 'SEO';
   };
   attributes: {
-    canonicalUrl: Schema.Attribute.String;
     defaultTitle: Schema.Attribute.String &
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 60;
@@ -242,12 +241,6 @@ export interface SharedSeo extends Struct.ComponentSchema {
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 255;
       }>;
-    locale: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetMinMaxLength<{
-        maxLength: 10;
-      }> &
-      Schema.Attribute.DefaultTo<'pt_BR'>;
     ogDescription: Schema.Attribute.Text &
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 160;

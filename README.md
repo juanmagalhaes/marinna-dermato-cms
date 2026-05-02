@@ -37,11 +37,11 @@ yarn build
   - `Category`, `Tag`
   - `Default SEO`
 - Componentes:
-  - `shared.seo` (locale obrigatório e default: `pt_BR`)
+  - `shared.seo` (metadados para artigos; sem locale/canonical no CMS)
   - Blocos `article.*`
 
-Padronização de SEO: ver `docs/seo-standardization.md`.
-Enforcement de `locale: pt_BR`: ver `docs/locale-enforcement.md`.
+**Plano de SEO:** `docs/seo-plano-referencia.md`  
+**Padronização de campos:** `docs/seo-standardization.md`
 
 ## Integração com Frontend
 

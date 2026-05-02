@@ -28,16 +28,20 @@
       "type": "string",
       "required": true
     },
-    "locale": {
-      "type": "string",
-      "required": true,
-      "default": "pt_BR"
-    },
-    "keywords": {
+    "ogTitle": {
       "type": "string",
       "required": false
     },
-    "canonicalUrl": {
+    "ogDescription": {
+      "type": "text",
+      "required": false
+    },
+    "twitterCard": {
+      "type": "enumeration",
+      "enum": ["summary_large_image", "summary"],
+      "default": "summary_large_image"
+    },
+    "keywords": {
       "type": "string",
       "required": false
     },

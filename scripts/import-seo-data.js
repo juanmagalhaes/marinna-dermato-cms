@@ -49,7 +49,9 @@ function cleanSeoData(seoData) {
   delete cleanData.createdBy;
   delete cleanData.updatedBy;
   delete cleanData.locale;
-  
+  delete cleanData.canonicalUrl;
+  delete cleanData.ogLocale;
+
   return cleanData;
 }
 

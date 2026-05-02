@@ -22,19 +22,9 @@
       "type": "string",
       "maxLength": 100
     },
-    "locale": {
-      "type": "string",
-      "maxLength": 10,
-      "default": "pt_BR",
-      "required": true
-    },
     "keywords": {
       "type": "string",
       "maxLength": 255
-    },
-    "canonicalUrl": {
-      "type": "string",
-      "regex": "^https?://.*"
     },
     "openGraphImage": {
       "type": "media",

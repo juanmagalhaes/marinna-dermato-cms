@@ -19,20 +19,20 @@
 ### **After (Standardized SEO):**
 ```json
 {
-  "defaultTitle": "string",        // ✅ Renamed from metaTitle
-  "titleTemplate": "string",       // ✅ Added (from Default SEO)
-  "description": "text",           // ✅ Renamed from metaDescription
-  "siteName": "string",           // ✅ Added (from Default SEO)
-  "locale": "string",             // ✅ Added (from Default SEO)
-  "keywords": "string",           // ✅ Changed from text to string
-  "canonicalUrl": "string",       // ✅ Kept same
-  "openGraphImage": "media",      // ✅ Renamed from ogImage
-  "twitterImage": "media",        // ✅ Added (from Default SEO)
-  "ogTitle": "string",            // ✅ Kept same
-  "ogDescription": "text",        // ✅ Kept same
-  "twitterCard": "enum"           // ✅ Kept same
+  "defaultTitle": "string",
+  "titleTemplate": "string",
+  "description": "text",
+  "siteName": "string",
+  "keywords": "string",
+  "openGraphImage": "media",
+  "twitterImage": "media",
+  "ogTitle": "string",
+  "ogDescription": "text",
+  "twitterCard": "enum"
 }
 ```
+
+**Nota (2026):** `locale` e `canonicalUrl` **não** fazem parte do modelo. Idioma é fixo no frontend; URL canónica é calculada no Next (`SITE_URL` + pathname). Ver `seo-plano-referencia.md`.
 
 ## 🎯 Benefits of Standardization
 
@@ -67,8 +67,7 @@
 2. Handle new fields:
    - `seo.titleTemplate` for dynamic titles
    - `seo.siteName` for site branding
-   - `seo.locale` for language detection
-   - `seo.twitterImage` for Twitter-specific images
+   - `seo.twitterImage` for Twitter/X link previews
 
 ### **Backend Changes:**
 - No breaking changes to API endpoints
@@ -105,7 +104,7 @@ const ogTitle = seo.ogTitle || seo.defaultTitle;
 const ogDescription = seo.ogDescription || seo.description;
 const ogImage = seo.openGraphImage;
 const ogSiteName = seo.siteName;
-const ogLocale = seo.locale;
+// og:locale: fixo no frontend (site monolíngue pt-BR)
 
 // Twitter tags
 const twitterTitle = seo.ogTitle || seo.defaultTitle;

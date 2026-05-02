@@ -92,14 +92,14 @@
 - `titleTemplate` (string) - Title template with %s placeholder
 - `description` (text) - Meta description
 - `siteName` (string) - Site name
-- `locale` (string) - Language/locale (always pt_BR, enforced)
 - `keywords` (string) - SEO keywords
-- `canonicalUrl` (string) - Canonical URL
 - `openGraphImage` (media) - Open Graph image
-- `twitterImage` (media) - Twitter specific image
+- `twitterImage` (media) - Twitter / X card image (link previews)
 - `ogTitle` (string) - Open Graph specific title
 - `ogDescription` (text) - Open Graph specific description
 - `twitterCard` (enum) - Twitter card type (summary, summary_large_image)
+
+Idioma e canónico **não** são campos do CMS (site monolíngue; canónico gerado no Next).
 
 ## 🚀 API Endpoints
 
@@ -142,7 +142,6 @@ const article = await strapi.entityService.create('api::article.article', {
       titleTemplate: '%s | Dra. Marinna - Dermatologista',
       description: 'Aprenda os cuidados essenciais...',
       siteName: 'Dra. Marinna - Dermatologista',
-      locale: 'pt_BR',
       keywords: 'pele, verão, protetor solar, dermatologia',
       ogTitle: 'Cuidados com a Pele no Verão - Dra. Marinna',
       ogDescription: 'Aprenda os cuidados essenciais...',

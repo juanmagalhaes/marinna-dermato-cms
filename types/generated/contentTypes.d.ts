@@ -481,23 +481,27 @@ export interface ApiDefaultSeoDefaultSeo extends Struct.SingleTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
-    canonicalUrl: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     defaultTitle: Schema.Attribute.String & Schema.Attribute.Required;
     description: Schema.Attribute.Text & Schema.Attribute.Required;
     keywords: Schema.Attribute.String;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::default-seo.default-seo'
     > &
       Schema.Attribute.Private;
+    ogDescription: Schema.Attribute.Text;
+    ogTitle: Schema.Attribute.String;
     openGraphImage: Schema.Attribute.Media<'images'>;
     publishedAt: Schema.Attribute.DateTime;
     siteName: Schema.Attribute.String & Schema.Attribute.Required;
     titleTemplate: Schema.Attribute.String & Schema.Attribute.Required;
+    twitterCard: Schema.Attribute.Enumeration<
+      ['summary_large_image', 'summary']
+    > &
+      Schema.Attribute.DefaultTo<'summary_large_image'>;
     twitterImage: Schema.Attribute.Media<'images'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
