@@ -24,7 +24,11 @@ function mergeSchemaMetadataLabels(schema, metadatas) {
 
   const next = structuredClone(metadatas);
   for (const [attr, spec] of Object.entries(specMap)) {
-    if (!next[attr] || !spec) continue;
+    if (!spec) continue;
+    // Store may lack keys until CM sync; still apply schema labels (fixes partial local DB).
+    if (!next[attr]) {
+      next[attr] = { edit: {}, list: {} };
+    }
     if (spec.edit) {
       for (const key of EDIT_METADATA_KEYS) {
         if (Object.prototype.hasOwnProperty.call(spec.edit, key)) {
