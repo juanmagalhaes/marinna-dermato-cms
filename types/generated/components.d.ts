@@ -230,6 +230,19 @@ export interface SharedRichText extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedSectionHeading extends Struct.ComponentSchema {
+  collectionName: 'components_shared_section_headings';
+  info: {
+    description: 'T\u00EDtulo e subt\u00EDtulo exibidos no site (ex.: cabe\u00E7alho da sec\u00E7\u00E3o de tratamentos na p\u00E1gina inicial)';
+    displayName: 'T\u00EDtulo de sec\u00E7\u00E3o';
+    icon: 'pencil';
+  };
+  attributes: {
+    subtitle: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface SharedSeo extends Struct.ComponentSchema {
   collectionName: 'components_shared_seos';
   info: {
@@ -312,6 +325,7 @@ declare module '@strapi/strapi' {
       'shared.phone': SharedPhone;
       'shared.quote': SharedQuote;
       'shared.rich-text': SharedRichText;
+      'shared.section-heading': SharedSectionHeading;
       'shared.seo': SharedSeo;
       'shared.slider': SharedSlider;
       'shared.social': SharedSocial;

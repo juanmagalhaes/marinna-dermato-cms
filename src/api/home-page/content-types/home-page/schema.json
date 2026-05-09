@@ -28,6 +28,12 @@
       "repeatable": false,
       "component": "shared.about-preview"
     },
+    "featuredTreatmentsHeading": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-heading",
+      "required": false
+    },
     "featuredTreatments": {
       "type": "relation",
       "relation": "oneToMany",
@@ -62,6 +68,13 @@
       "aboutPreview": {
         "edit": { "label": "Prévia — Sobre" },
         "list": { "label": "Sobre" }
+      },
+      "featuredTreatmentsHeading": {
+        "edit": {
+          "label": "Secção Tratamentos — título e subtítulo",
+          "description": "Textos do bloco \"Tratamentos\" na página inicial (cartões em destaque)."
+        },
+        "list": { "label": "Cabeçalho — Tratamentos" }
       },
       "featuredTreatments": {
         "edit": { "label": "Tratamentos em destaque" },

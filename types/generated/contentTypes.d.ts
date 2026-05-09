@@ -624,6 +624,10 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
       'oneToMany',
       'api::treatment.treatment'
     >;
+    featuredTreatmentsHeading: Schema.Attribute.Component<
+      'shared.section-heading',
+      false
+    >;
     hero: Schema.Attribute.Component<'shared.hero', false>;
     highlights: Schema.Attribute.Component<'shared.highlight', true>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;

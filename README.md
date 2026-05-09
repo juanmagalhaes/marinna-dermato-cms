@@ -32,6 +32,8 @@ yarn build
 
 ## Conteúdo e Modelagem
 
+**Nomes legíveis no Admin (pt-BR):** ver `docs/cms-content-conventions.md` — `info.displayName`, `config.metadatas` por campo, e o mesmo para componentes.
+
 - Content Types:
   - `Article` (Dynamic Zone, **Draft & Publish**; preview no Next = GraphQL `DRAFT` — ver `docs/blog-structure.md`)
   - `Category`, `Tag`

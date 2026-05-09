@@ -1,0 +1,37 @@
+{
+  "collectionName": "components_shared_section_headings",
+  "info": {
+    "displayName": "Título de secção",
+    "icon": "pencil",
+    "description": "Título e subtítulo exibidos no site (ex.: cabeçalho da secção de tratamentos na página inicial)"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": false
+    },
+    "subtitle": {
+      "type": "text",
+      "required": false
+    }
+  },
+  "config": {
+    "metadatas": {
+      "title": {
+        "edit": {
+          "label": "Título",
+          "description": "Se ficar vazio, o site usa o texto padrão definido no frontend."
+        },
+        "list": { "label": "Título" }
+      },
+      "subtitle": {
+        "edit": {
+          "label": "Subtítulo",
+          "description": "Texto de apoio abaixo do título. Opcional; vazio usa o padrão do site."
+        },
+        "list": { "label": "Subtítulo" }
+      }
+    }
+  }
+}
