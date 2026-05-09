@@ -4,8 +4,8 @@
   "info": {
     "singularName": "article",
     "pluralName": "articles",
-    "displayName": "Article",
-    "description": "Blog articles with dynamic content blocks"
+    "displayName": "Artigo",
+    "description": "Artigos do blog com blocos de conteúdo (texto, imagem, vídeo, citação)"
   },
   "options": {
     "draftAndPublish": true,
@@ -58,6 +58,42 @@
         "article.video-block",
         "article.quote-block"
       ]
+    }
+  },
+  "config": {
+    "metadatas": {
+      "title": {
+        "edit": { "label": "Título" },
+        "list": { "label": "Título" }
+      },
+      "slug": {
+        "edit": { "label": "Slug (identificador na URL)" },
+        "list": { "label": "Slug" }
+      },
+      "excerpt": {
+        "edit": { "label": "Resumo / chamada" },
+        "list": { "label": "Resumo" }
+      },
+      "featuredImage": {
+        "edit": { "label": "Imagem de destaque" },
+        "list": { "label": "Imagem" }
+      },
+      "categories": {
+        "edit": { "label": "Categorias" },
+        "list": { "label": "Categorias" }
+      },
+      "tags": {
+        "edit": { "label": "Tags" },
+        "list": { "label": "Tags" }
+      },
+      "seo": {
+        "edit": { "label": "SEO" },
+        "list": { "label": "SEO" }
+      },
+      "blocks": {
+        "edit": { "label": "Blocos de conteúdo" },
+        "list": { "label": "Blocos" }
+      }
     }
   }
 }

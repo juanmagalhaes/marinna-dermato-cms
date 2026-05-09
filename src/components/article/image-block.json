@@ -1,8 +1,8 @@
 {
   "collectionName": "components_article_image_blocks",
   "info": {
-    "displayName": "Image Block",
-    "description": "Image content block with caption and styling options"
+    "displayName": "Bloco de imagem",
+    "description": "Imagem com legenda, alinhamento, tamanho e link opcional"
   },
   "options": {},
   "attributes": {
@@ -26,6 +26,11 @@
       "enum": ["small", "medium", "large", "full"],
       "default": "medium"
     },
+    "customMaxWidth": {
+      "type": "string",
+      "maxLength": 64,
+      "description": "Largura máxima em CSS (ex.: 240px, 50%, min(100%, 28rem)). Se preenchido, ignora o tamanho predefinido (pequeno/médio/grande/largura total)."
+    },
     "link": {
       "type": "string",
       "regex": "^https?://.*"
@@ -33,6 +38,38 @@
     "alt": {
       "type": "string",
       "maxLength": 255
+    }
+  },
+  "config": {
+    "metadatas": {
+      "image": {
+        "edit": { "label": "Imagem" },
+        "list": { "label": "Imagem" }
+      },
+      "caption": {
+        "edit": { "label": "Legenda" },
+        "list": { "label": "Legenda" }
+      },
+      "alignment": {
+        "edit": { "label": "Alinhamento" },
+        "list": { "label": "Alinhamento" }
+      },
+      "size": {
+        "edit": { "label": "Tamanho" },
+        "list": { "label": "Tamanho" }
+      },
+      "customMaxWidth": {
+        "edit": { "label": "Largura máxima (CSS)" },
+        "list": { "label": "Largura custom." }
+      },
+      "link": {
+        "edit": { "label": "Link (URL)" },
+        "list": { "label": "Link" }
+      },
+      "alt": {
+        "edit": { "label": "Texto alternativo (acessibilidade)" },
+        "list": { "label": "Alt" }
+      }
     }
   }
 }

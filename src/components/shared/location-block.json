@@ -1,15 +1,23 @@
 {
   "collectionName": "components_shared_location_blocks",
   "info": {
-    "displayName": "Location Block",
+    "displayName": "Bloco de localização",
     "icon": "location-arrow",
-    "description": "Location section with map embed"
+    "description": "URL ou código para incorporar o mapa (Google Maps, etc.)"
   },
   "options": {},
   "attributes": {
     "mapEmbedUrl": {
       "type": "text",
       "required": true
+    }
+  },
+  "config": {
+    "metadatas": {
+      "mapEmbedUrl": {
+        "edit": { "label": "URL ou código do mapa (embed)" },
+        "list": { "label": "Mapa" }
+      }
     }
   }
 }

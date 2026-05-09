@@ -1,9 +1,9 @@
 {
   "collectionName": "components_shared_addresses",
   "info": {
-    "displayName": "Address",
+    "displayName": "Endereço",
     "icon": "location-arrow",
-    "description": "Physical address with geolocation"
+    "description": "Logradouro, número, bairro, cidade, estado, CEP e coordenadas"
   },
   "options": {},
   "attributes": {
@@ -36,6 +36,42 @@
     },
     "longitude": {
       "type": "decimal"
+    }
+  },
+  "config": {
+    "metadatas": {
+      "street": {
+        "edit": { "label": "Logradouro" },
+        "list": { "label": "Rua" }
+      },
+      "number": {
+        "edit": { "label": "Número" },
+        "list": { "label": "Nº" }
+      },
+      "neighborhood": {
+        "edit": { "label": "Bairro" },
+        "list": { "label": "Bairro" }
+      },
+      "city": {
+        "edit": { "label": "Cidade" },
+        "list": { "label": "Cidade" }
+      },
+      "state": {
+        "edit": { "label": "Estado (UF)" },
+        "list": { "label": "UF" }
+      },
+      "zip": {
+        "edit": { "label": "CEP" },
+        "list": { "label": "CEP" }
+      },
+      "latitude": {
+        "edit": { "label": "Latitude" },
+        "list": { "label": "Lat" }
+      },
+      "longitude": {
+        "edit": { "label": "Longitude" },
+        "list": { "label": "Lng" }
+      }
     }
   }
 }

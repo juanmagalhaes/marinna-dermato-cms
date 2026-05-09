@@ -1,9 +1,9 @@
 {
   "collectionName": "components_shared_highlights",
   "info": {
-    "displayName": "Highlight",
+    "displayName": "Card de destaque",
     "icon": "star",
-    "description": "Highlight card with title, description and icon"
+    "description": "Card com título, descrição e ícone (lista na home)"
   },
   "options": {},
   "attributes": {
@@ -18,6 +18,22 @@
     "icon": {
       "type": "string",
       "required": true
+    }
+  },
+  "config": {
+    "metadatas": {
+      "title": {
+        "edit": { "label": "Título" },
+        "list": { "label": "Título" }
+      },
+      "description": {
+        "edit": { "label": "Descrição do card" },
+        "list": { "label": "Descrição" }
+      },
+      "icon": {
+        "edit": { "label": "Ícone (nome Lucide)" },
+        "list": { "label": "Ícone" }
+      }
     }
   }
 }

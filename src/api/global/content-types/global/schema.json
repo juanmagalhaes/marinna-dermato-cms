@@ -4,8 +4,8 @@
   "info": {
     "singularName": "global",
     "pluralName": "globals",
-    "displayName": "Global Settings",
-    "description": "Global website settings"
+    "displayName": "Configurações globais",
+    "description": "Nome do site, favicon e descrição geral"
   },
   "options": {
     "draftAndPublish": false
@@ -25,6 +25,22 @@
     "siteDescription": {
       "type": "text",
       "required": true
+    }
+  },
+  "config": {
+    "metadatas": {
+      "siteName": {
+        "edit": { "label": "Nome do site" },
+        "list": { "label": "Nome do site" }
+      },
+      "favicon": {
+        "edit": { "label": "Favicon" },
+        "list": { "label": "Favicon" }
+      },
+      "siteDescription": {
+        "edit": { "label": "Descrição curta do site" },
+        "list": { "label": "Descrição" }
+      }
     }
   }
 }

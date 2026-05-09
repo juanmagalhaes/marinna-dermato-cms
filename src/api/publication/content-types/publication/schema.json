@@ -4,8 +4,8 @@
   "info": {
     "singularName": "publication",
     "pluralName": "publications",
-    "displayName": "Publication",
-    "description": "Scientific publications and research"
+    "displayName": "Publicação",
+    "description": "Publicações científicas e pesquisas da doutora"
   },
   "options": {
     "draftAndPublish": true
@@ -33,6 +33,30 @@
       "type": "integer",
       "default": 0,
       "min": 0
+    }
+  },
+  "config": {
+    "metadatas": {
+      "title": {
+        "edit": { "label": "Título" },
+        "list": { "label": "Título" }
+      },
+      "journal": {
+        "edit": { "label": "Revista / periódico" },
+        "list": { "label": "Revista" }
+      },
+      "year": {
+        "edit": { "label": "Ano" },
+        "list": { "label": "Ano" }
+      },
+      "doiOrUrl": {
+        "edit": { "label": "DOI ou link" },
+        "list": { "label": "DOI / URL" }
+      },
+      "sortOrder": {
+        "edit": { "label": "Ordem de exibição" },
+        "list": { "label": "Ordem" }
+      }
     }
   }
 }

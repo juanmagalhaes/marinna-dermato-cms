@@ -1,9 +1,9 @@
 {
   "collectionName": "components_shared_socials",
   "info": {
-    "displayName": "Social",
+    "displayName": "Redes sociais",
     "icon": "link",
-    "description": "Social media links"
+    "description": "Links para Instagram, Facebook, LinkedIn e site"
   },
   "options": {},
   "attributes": {
@@ -15,6 +15,22 @@
     },
     "googleBusiness": {
       "type": "string"
+    }
+  },
+  "config": {
+    "metadatas": {
+      "instagram": {
+        "edit": { "label": "Instagram (URL)" },
+        "list": { "label": "Instagram" }
+      },
+      "doctoralia": {
+        "edit": { "label": "Doctoralia (URL)" },
+        "list": { "label": "Doctoralia" }
+      },
+      "googleBusiness": {
+        "edit": { "label": "Google Meu Negócio (URL)" },
+        "list": { "label": "Google" }
+      }
     }
   }
 }

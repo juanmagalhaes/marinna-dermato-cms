@@ -1,9 +1,9 @@
 {
   "collectionName": "components_shared_about_previews",
   "info": {
-    "displayName": "About Preview",
+    "displayName": "Prévia — Sobre",
     "icon": "user",
-    "description": "About section preview with title, text and image"
+    "description": "Título, texto e imagem da seção Sobre na página inicial"
   },
   "options": {},
   "attributes": {
@@ -20,6 +20,22 @@
       "multiple": false,
       "required": false,
       "allowedTypes": ["images"]
+    }
+  },
+  "config": {
+    "metadatas": {
+      "title": {
+        "edit": { "label": "Título" },
+        "list": { "label": "Título" }
+      },
+      "text": {
+        "edit": { "label": "Texto" },
+        "list": { "label": "Texto" }
+      },
+      "image": {
+        "edit": { "label": "Imagem" },
+        "list": { "label": "Imagem" }
+      }
     }
   }
 }

@@ -376,8 +376,8 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
 export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
   collectionName: 'articles';
   info: {
-    description: 'Blog articles with dynamic content blocks';
-    displayName: 'Article';
+    description: 'Artigos do blog com blocos de conte\u00FAdo (texto, imagem, v\u00EDdeo, cita\u00E7\u00E3o)';
+    displayName: 'Artigo';
     pluralName: 'articles';
     singularName: 'article';
   };
@@ -430,8 +430,8 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
 export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   collectionName: 'categories';
   info: {
-    description: 'Article categories for blog organization';
-    displayName: 'Category';
+    description: 'Categorias dos artigos do blog';
+    displayName: 'Categoria';
     pluralName: 'categories';
     singularName: 'category';
   };
@@ -471,8 +471,8 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
 export interface ApiDefaultSeoDefaultSeo extends Struct.SingleTypeSchema {
   collectionName: 'default_seos';
   info: {
-    description: 'Default SEO settings for the website';
-    displayName: 'Default SEO';
+    description: 'T\u00EDtulo, descri\u00E7\u00E3o e imagens padr\u00E3o para motores de busca e redes sociais';
+    displayName: 'SEO padr\u00E3o do site';
     pluralName: 'default-seos';
     singularName: 'default-seo';
   };
@@ -511,8 +511,8 @@ export interface ApiDefaultSeoDefaultSeo extends Struct.SingleTypeSchema {
 export interface ApiDoctorProfileDoctorProfile extends Struct.SingleTypeSchema {
   collectionName: 'doctor_profiles';
   info: {
-    description: "Doctor's professional profile information";
-    displayName: 'Doctor Profile';
+    description: 'Dados profissionais da Dra. Marinna (nome, CRM, RQE, texto de apresenta\u00E7\u00E3o)';
+    displayName: 'Perfil da doutora';
     pluralName: 'doctor-profiles';
     singularName: 'doctor-profile';
   };
@@ -548,8 +548,8 @@ export interface ApiDoctorProfileDoctorProfile extends Struct.SingleTypeSchema {
 export interface ApiFaqFaq extends Struct.CollectionTypeSchema {
   collectionName: 'faqs';
   info: {
-    description: 'Frequently Asked Questions';
-    displayName: 'FAQ';
+    description: 'Pares pergunta e resposta para a se\u00E7\u00E3o de d\u00FAvidas do site';
+    displayName: 'Perguntas frequentes';
     pluralName: 'faqs';
     singularName: 'faq';
   };
@@ -575,8 +575,8 @@ export interface ApiFaqFaq extends Struct.CollectionTypeSchema {
 export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   collectionName: 'globals';
   info: {
-    description: 'Global website settings';
-    displayName: 'Global Settings';
+    description: 'Nome do site, favicon e descri\u00E7\u00E3o geral';
+    displayName: 'Configura\u00E7\u00F5es globais';
     pluralName: 'globals';
     singularName: 'global';
   };
@@ -606,8 +606,8 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
 export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
   collectionName: 'home_pages';
   info: {
-    description: 'Content for the home page';
-    displayName: 'Home Page';
+    description: 'Conte\u00FAdo exibido na home: hero, destaques, sobre, FAQ e mais';
+    displayName: 'P\u00E1gina inicial';
     pluralName: 'home-pages';
     singularName: 'home-page';
   };
@@ -647,8 +647,8 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
 export interface ApiPublicationPublication extends Struct.CollectionTypeSchema {
   collectionName: 'publications';
   info: {
-    description: 'Scientific publications and research';
-    displayName: 'Publication';
+    description: 'Publica\u00E7\u00F5es cient\u00EDficas e pesquisas da doutora';
+    displayName: 'Publica\u00E7\u00E3o';
     pluralName: 'publications';
     singularName: 'publication';
   };
@@ -692,7 +692,7 @@ export interface ApiPublicationPublication extends Struct.CollectionTypeSchema {
 export interface ApiTagTag extends Struct.CollectionTypeSchema {
   collectionName: 'tags';
   info: {
-    description: 'Article tags for blog organization and filtering';
+    description: 'Etiquetas dos artigos para organiza\u00E7\u00E3o e filtros no blog';
     displayName: 'Tag';
     pluralName: 'tags';
     singularName: 'tag';
@@ -730,8 +730,8 @@ export interface ApiTagTag extends Struct.CollectionTypeSchema {
 export interface ApiTreatmentTreatment extends Struct.CollectionTypeSchema {
   collectionName: 'treatments';
   info: {
-    description: 'Medical treatments offered';
-    displayName: 'Treatment';
+    description: 'Tratamentos e procedimentos oferecidos pela cl\u00EDnica';
+    displayName: 'Tratamento';
     pluralName: 'treatments';
     singularName: 'treatment';
   };

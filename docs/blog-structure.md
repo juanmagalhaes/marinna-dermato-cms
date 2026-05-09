@@ -105,7 +105,7 @@ Componente partilhado: **`shared.seo`** nos artigos (e alinhado ao Default SEO d
 Cada bloco tem **JSON** em `src/components/article/` (`text-block.json`, `image-block.json`, `video-block.json`, `quote-block.json`) e interfaces geradas em **`types/generated/components.d.ts`**:
 
 - `ArticleTextBlock`
-- **`ArticleImageBlock`** — `image` (media), `caption`, `alt`, `link`, `alignment`, `size`
+- **`ArticleImageBlock`** — `image` (media), `caption`, `alt`, `link`, `alignment`, `size` (`small` \| `medium` \| `large` \| `full`), `customMaxWidth` (opcional; CSS `max-width`, ex. `320px` ou `min(100%, 28rem)` — se preenchido, substitui `size`)
 - **`ArticleVideoBlock`** — `videoType` (`instagram` \| `youtube` \| `vimeo` \| `upload`), `videoUrl`, `thumbnail`, `caption`, `alignment`, `size`, `autoplay`, `muted`
 - `ArticleQuoteBlock`
 

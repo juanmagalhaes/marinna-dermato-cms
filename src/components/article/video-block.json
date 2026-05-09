@@ -1,8 +1,8 @@
 {
   "collectionName": "components_article_video_blocks",
   "info": {
-    "displayName": "Video Block",
-    "description": "Video content block supporting Instagram, YouTube, Vimeo and uploads"
+    "displayName": "Bloco de vídeo",
+    "description": "Vídeo incorporado (Instagram, YouTube, Vimeo ou URL de arquivo)"
   },
   "options": {},
   "attributes": {
@@ -42,6 +42,42 @@
     "muted": {
       "type": "boolean",
       "default": true
+    }
+  },
+  "config": {
+    "metadatas": {
+      "videoType": {
+        "edit": { "label": "Tipo de vídeo" },
+        "list": { "label": "Tipo" }
+      },
+      "videoUrl": {
+        "edit": { "label": "URL do vídeo" },
+        "list": { "label": "URL" }
+      },
+      "thumbnail": {
+        "edit": { "label": "Miniatura (opcional)" },
+        "list": { "label": "Miniatura" }
+      },
+      "caption": {
+        "edit": { "label": "Legenda" },
+        "list": { "label": "Legenda" }
+      },
+      "alignment": {
+        "edit": { "label": "Alinhamento" },
+        "list": { "label": "Alinhamento" }
+      },
+      "size": {
+        "edit": { "label": "Tamanho" },
+        "list": { "label": "Tamanho" }
+      },
+      "autoplay": {
+        "edit": { "label": "Reprodução automática" },
+        "list": { "label": "Autoplay" }
+      },
+      "muted": {
+        "edit": { "label": "Sem som por padrão" },
+        "list": { "label": "Mudo" }
+      }
     }
   }
 }

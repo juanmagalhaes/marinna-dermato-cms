@@ -4,8 +4,8 @@
   "info": {
     "singularName": "category",
     "pluralName": "categories",
-    "displayName": "Category",
-    "description": "Article categories for blog organization"
+    "displayName": "Categoria",
+    "description": "Categorias dos artigos do blog"
   },
   "options": {
     "draftAndPublish": false
@@ -37,6 +37,30 @@
       "relation": "manyToMany",
       "target": "api::article.article",
       "mappedBy": "categories"
+    }
+  },
+  "config": {
+    "metadatas": {
+      "name": {
+        "edit": { "label": "Nome" },
+        "list": { "label": "Nome" }
+      },
+      "slug": {
+        "edit": { "label": "Slug (identificador na URL)" },
+        "list": { "label": "Slug" }
+      },
+      "description": {
+        "edit": { "label": "Descrição" },
+        "list": { "label": "Descrição" }
+      },
+      "color": {
+        "edit": { "label": "Cor (hex)" },
+        "list": { "label": "Cor" }
+      },
+      "articles": {
+        "edit": { "label": "Artigos" },
+        "list": { "label": "Artigos" }
+      }
     }
   }
 }

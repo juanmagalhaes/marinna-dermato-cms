@@ -4,8 +4,8 @@
   "info": {
     "singularName": "faq",
     "pluralName": "faqs",
-    "displayName": "FAQ",
-    "description": "Frequently Asked Questions"
+    "displayName": "Perguntas frequentes",
+    "description": "Pares pergunta e resposta para a seção de dúvidas do site"
   },
   "options": {
     "draftAndPublish": true
@@ -19,6 +19,18 @@
     "answer": {
       "type": "richtext",
       "required": true
+    }
+  },
+  "config": {
+    "metadatas": {
+      "question": {
+        "edit": { "label": "Pergunta" },
+        "list": { "label": "Pergunta" }
+      },
+      "answer": {
+        "edit": { "label": "Resposta" },
+        "list": { "label": "Resposta" }
+      }
     }
   }
 }

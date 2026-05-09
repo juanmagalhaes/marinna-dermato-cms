@@ -4,8 +4,8 @@
   "info": {
     "singularName": "treatment",
     "pluralName": "treatments",
-    "displayName": "Treatment",
-    "description": "Medical treatments offered"
+    "displayName": "Tratamento",
+    "description": "Tratamentos e procedimentos oferecidos pela clínica"
   },
   "options": {
     "draftAndPublish": true
@@ -46,6 +46,42 @@
       "type": "integer",
       "default": 0,
       "min": 0
+    }
+  },
+  "config": {
+    "metadatas": {
+      "title": {
+        "edit": { "label": "Título" },
+        "list": { "label": "Título" }
+      },
+      "slug": {
+        "edit": { "label": "Slug (identificador na URL)" },
+        "list": { "label": "Slug" }
+      },
+      "summary": {
+        "edit": { "label": "Resumo" },
+        "list": { "label": "Resumo" }
+      },
+      "content": {
+        "edit": { "label": "Conteúdo" },
+        "list": { "label": "Conteúdo" }
+      },
+      "coverImage": {
+        "edit": { "label": "Imagem de capa" },
+        "list": { "label": "Imagem de capa" }
+      },
+      "contraindications": {
+        "edit": { "label": "Contraindicações" },
+        "list": { "label": "Contraindicações" }
+      },
+      "metaDescription": {
+        "edit": { "label": "Meta descrição (SEO)" },
+        "list": { "label": "Meta descrição" }
+      },
+      "sortOrder": {
+        "edit": { "label": "Ordem de exibição" },
+        "list": { "label": "Ordem" }
+      }
     }
   }
 }

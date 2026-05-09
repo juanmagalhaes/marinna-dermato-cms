@@ -5,7 +5,7 @@
     "singularName": "tag",
     "pluralName": "tags",
     "displayName": "Tag",
-    "description": "Article tags for blog organization and filtering"
+    "description": "Etiquetas dos artigos para organização e filtros no blog"
   },
   "options": {
     "draftAndPublish": false
@@ -37,6 +37,30 @@
       "relation": "manyToMany",
       "target": "api::article.article",
       "mappedBy": "tags"
+    }
+  },
+  "config": {
+    "metadatas": {
+      "name": {
+        "edit": { "label": "Nome" },
+        "list": { "label": "Nome" }
+      },
+      "slug": {
+        "edit": { "label": "Slug (identificador na URL)" },
+        "list": { "label": "Slug" }
+      },
+      "description": {
+        "edit": { "label": "Descrição" },
+        "list": { "label": "Descrição" }
+      },
+      "color": {
+        "edit": { "label": "Cor (hex)" },
+        "list": { "label": "Cor" }
+      },
+      "articles": {
+        "edit": { "label": "Artigos" },
+        "list": { "label": "Artigos" }
+      }
     }
   }
 }

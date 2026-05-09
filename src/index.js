@@ -2,6 +2,81 @@
 
 const ARTICLE_UID = 'api::article.article';
 
+/** Keys Strapi merges from schema `config.metadatas` (see content-manager metadatas.mjs). */
+const EDIT_METADATA_KEYS = [
+  'label',
+  'description',
+  'placeholder',
+  'visible',
+  'editable',
+  'mainField',
+];
+const LIST_METADATA_KEYS = ['label', 'searchable', 'sortable'];
+
+/**
+ * Content Manager persists field labels in the DB. On sync, stored metadatas are merged
+ * *after* schema defaults, so old rows keep technical names and ignore `schema.json` labels.
+ * Re-apply `config.metadatas` from each schema on top of the stored configuration.
+ */
+function mergeSchemaMetadataLabels(schema, metadatas) {
+  const specMap = schema.config?.metadatas;
+  if (!specMap || !metadatas) return metadatas;
+
+  const next = structuredClone(metadatas);
+  for (const [attr, spec] of Object.entries(specMap)) {
+    if (!next[attr] || !spec) continue;
+    if (spec.edit) {
+      for (const key of EDIT_METADATA_KEYS) {
+        if (Object.prototype.hasOwnProperty.call(spec.edit, key)) {
+          next[attr].edit[key] = spec.edit[key];
+        }
+      }
+    }
+    if (spec.list) {
+      for (const key of LIST_METADATA_KEYS) {
+        if (Object.prototype.hasOwnProperty.call(spec.list, key)) {
+          next[attr].list[key] = spec.list[key];
+        }
+      }
+    }
+  }
+  return next;
+}
+
+async function syncContentManagerLabelsFromSchema(strapi) {
+  const cmTypes = strapi.plugin('content-manager').service('content-types');
+  const cmComponents = strapi.plugin('content-manager').service('components');
+
+  for (const schema of Object.values(strapi.contentTypes)) {
+    if (!schema?.uid) continue;
+    if (schema.uid.startsWith('admin::') || schema.uid.startsWith('strapi::')) continue;
+
+    const conf = await cmTypes.findConfiguration(schema);
+    const nextMeta = mergeSchemaMetadataLabels(schema, conf.metadatas);
+    if (JSON.stringify(conf.metadatas) === JSON.stringify(nextMeta)) continue;
+
+    await cmTypes.updateConfiguration(schema, {
+      settings: conf.settings,
+      metadatas: nextMeta,
+      layouts: conf.layouts,
+    });
+  }
+
+  for (const schema of Object.values(strapi.components)) {
+    if (!schema?.uid) continue;
+
+    const conf = await cmComponents.findConfiguration(schema);
+    const nextMeta = mergeSchemaMetadataLabels(schema, conf.metadatas);
+    if (JSON.stringify(conf.metadatas) === JSON.stringify(nextMeta)) continue;
+
+    await cmComponents.updateConfiguration(schema, {
+      settings: conf.settings,
+      metadatas: nextMeta,
+      layouts: conf.layouts,
+    });
+  }
+}
+
 /** Field order in Content Manager edit view (categories & tags before SEO, then blocks). */
 const ARTICLE_EDIT_FIELD_ORDER = [
   'title',
@@ -76,6 +151,8 @@ module.exports = {
   },
 
   async bootstrap({ strapi }) {
+    await syncContentManagerLabelsFromSchema(strapi);
+
     const contentType = strapi.contentTypes[ARTICLE_UID];
     if (!contentType) return;
 

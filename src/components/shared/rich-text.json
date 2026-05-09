@@ -1,14 +1,22 @@
 {
   "collectionName": "components_shared_rich_texts",
   "info": {
-    "displayName": "Rich text",
+    "displayName": "Texto formatado",
     "icon": "align-justify",
-    "description": ""
+    "description": "Conteúdo em editor rich text do Strapi"
   },
   "options": {},
   "attributes": {
     "body": {
       "type": "richtext"
+    }
+  },
+  "config": {
+    "metadatas": {
+      "body": {
+        "edit": { "label": "Conteúdo" },
+        "list": { "label": "Conteúdo" }
+      }
     }
   }
 }

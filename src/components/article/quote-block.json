@@ -1,8 +1,8 @@
 {
   "collectionName": "components_article_quote_blocks",
   "info": {
-    "displayName": "Quote Block",
-    "description": "Quote content block with author and source information"
+    "displayName": "Bloco de citação",
+    "description": "Citação com autor, fonte, estilo e alinhamento"
   },
   "options": {},
   "attributes": {
@@ -28,6 +28,30 @@
       "type": "enumeration",
       "enum": ["left", "center", "right"],
       "default": "center"
+    }
+  },
+  "config": {
+    "metadatas": {
+      "quote": {
+        "edit": { "label": "Citação" },
+        "list": { "label": "Citação" }
+      },
+      "author": {
+        "edit": { "label": "Autor" },
+        "list": { "label": "Autor" }
+      },
+      "source": {
+        "edit": { "label": "Fonte" },
+        "list": { "label": "Fonte" }
+      },
+      "style": {
+        "edit": { "label": "Estilo visual" },
+        "list": { "label": "Estilo" }
+      },
+      "alignment": {
+        "edit": { "label": "Alinhamento" },
+        "list": { "label": "Alinhamento" }
+      }
     }
   }
 }

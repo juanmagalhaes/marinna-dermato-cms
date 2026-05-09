@@ -1,9 +1,9 @@
 {
   "collectionName": "components_shared_heroes",
   "info": {
-    "displayName": "Hero",
+    "displayName": "Hero (destaque)",
     "icon": "picture",
-    "description": "Hero section with title, subtitle and CTA"
+    "description": "Destaque principal: título, subtítulo, botões e imagem de fundo"
   },
   "options": {},
   "attributes": {
@@ -28,6 +28,30 @@
       "multiple": false,
       "required": false,
       "allowedTypes": ["images"]
+    }
+  },
+  "config": {
+    "metadatas": {
+      "title": {
+        "edit": { "label": "Título" },
+        "list": { "label": "Título" }
+      },
+      "subtitle": {
+        "edit": { "label": "Subtítulo" },
+        "list": { "label": "Subtítulo" }
+      },
+      "ctaLabel": {
+        "edit": { "label": "Texto do botão (CTA)" },
+        "list": { "label": "CTA texto" }
+      },
+      "ctaTarget": {
+        "edit": { "label": "Destino do botão (URL ou caminho)" },
+        "list": { "label": "CTA link" }
+      },
+      "heroImage": {
+        "edit": { "label": "Imagem de fundo" },
+        "list": { "label": "Imagem" }
+      }
     }
   }
 }

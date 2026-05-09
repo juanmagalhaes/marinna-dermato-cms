@@ -1,8 +1,8 @@
 {
   "collectionName": "components_article_text_blocks",
   "info": {
-    "displayName": "Text Block",
-    "description": "HTML content block (TinyMCE), same editor as treatments"
+    "displayName": "Bloco de texto",
+    "description": "Texto rico (TinyMCE), mesmo editor usado nos tratamentos"
   },
   "options": {},
   "attributes": {
@@ -24,6 +24,26 @@
       "type": "enumeration",
       "enum": ["none", "small", "medium", "large"],
       "default": "medium"
+    }
+  },
+  "config": {
+    "metadatas": {
+      "content": {
+        "edit": { "label": "Conteúdo" },
+        "list": { "label": "Conteúdo" }
+      },
+      "alignment": {
+        "edit": { "label": "Alinhamento" },
+        "list": { "label": "Alinhamento" }
+      },
+      "backgroundColor": {
+        "edit": { "label": "Cor de fundo (hex)" },
+        "list": { "label": "Cor de fundo" }
+      },
+      "padding": {
+        "edit": { "label": "Espaçamento vertical" },
+        "list": { "label": "Padding" }
+      }
     }
   }
 }

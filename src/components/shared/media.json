@@ -1,8 +1,9 @@
 {
   "collectionName": "components_shared_media",
   "info": {
-    "displayName": "Media",
-    "icon": "file-video"
+    "displayName": "Arquivo de mídia",
+    "icon": "file-video",
+    "description": "Imagem, vídeo ou documento único"
   },
   "options": {},
   "attributes": {
@@ -10,6 +11,14 @@
       "allowedTypes": ["images", "files", "videos"],
       "type": "media",
       "multiple": false
+    }
+  },
+  "config": {
+    "metadatas": {
+      "file": {
+        "edit": { "label": "Arquivo" },
+        "list": { "label": "Arquivo" }
+      }
     }
   }
 }

@@ -4,8 +4,8 @@
   "info": {
     "singularName": "home-page",
     "pluralName": "home-pages",
-    "displayName": "Home Page",
-    "description": "Content for the home page"
+    "displayName": "Página inicial",
+    "description": "Conteúdo exibido na home: hero, destaques, sobre, FAQ e mais"
   },
   "options": {
     "draftAndPublish": false
@@ -47,6 +47,38 @@
       "type": "component",
       "repeatable": false,
       "component": "shared.location-block"
+    }
+  },
+  "config": {
+    "metadatas": {
+      "hero": {
+        "edit": { "label": "Hero (destaque principal)" },
+        "list": { "label": "Hero" }
+      },
+      "highlights": {
+        "edit": { "label": "Cards de destaque" },
+        "list": { "label": "Destaques" }
+      },
+      "aboutPreview": {
+        "edit": { "label": "Prévia — Sobre" },
+        "list": { "label": "Sobre" }
+      },
+      "featuredTreatments": {
+        "edit": { "label": "Tratamentos em destaque" },
+        "list": { "label": "Tratamentos" }
+      },
+      "publicationsPreview": {
+        "edit": { "label": "Publicações em destaque" },
+        "list": { "label": "Publicações" }
+      },
+      "faqPreview": {
+        "edit": { "label": "Perguntas frequentes (prévia)" },
+        "list": { "label": "FAQ" }
+      },
+      "locationBlock": {
+        "edit": { "label": "Mapa / localização" },
+        "list": { "label": "Localização" }
+      }
     }
   }
 }

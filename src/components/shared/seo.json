@@ -2,7 +2,7 @@
   "collectionName": "components_shared_seos",
   "info": {
     "displayName": "SEO",
-    "description": "SEO metadata component for articles and pages"
+    "description": "Metadados para Google e redes (título, descrição, imagens Open Graph)"
   },
   "options": {},
   "attributes": {
@@ -44,6 +44,46 @@
       "type": "enumeration",
       "enum": ["summary", "summary_large_image"],
       "default": "summary_large_image"
+    }
+  },
+  "config": {
+    "metadatas": {
+      "defaultTitle": {
+        "edit": { "label": "Título (SEO)" },
+        "list": { "label": "Título" }
+      },
+      "description": {
+        "edit": { "label": "Descrição (meta)" },
+        "list": { "label": "Descrição" }
+      },
+      "siteName": {
+        "edit": { "label": "Nome do site" },
+        "list": { "label": "Site" }
+      },
+      "keywords": {
+        "edit": { "label": "Palavras-chave" },
+        "list": { "label": "Keywords" }
+      },
+      "openGraphImage": {
+        "edit": { "label": "Imagem Open Graph" },
+        "list": { "label": "Imagem OG" }
+      },
+      "twitterImage": {
+        "edit": { "label": "Imagem Twitter/X" },
+        "list": { "label": "Imagem Twitter" }
+      },
+      "ogTitle": {
+        "edit": { "label": "Título Open Graph" },
+        "list": { "label": "OG título" }
+      },
+      "ogDescription": {
+        "edit": { "label": "Descrição Open Graph" },
+        "list": { "label": "OG descrição" }
+      },
+      "twitterCard": {
+        "edit": { "label": "Tipo de card Twitter/X" },
+        "list": { "label": "Twitter card" }
+      }
     }
   }
 }

@@ -1,9 +1,9 @@
 {
   "collectionName": "components_shared_phones",
   "info": {
-    "displayName": "Phone",
+    "displayName": "Telefone",
     "icon": "phone",
-    "description": "Phone contact information"
+    "description": "Número e rótulo (ex.: Consultório, WhatsApp)"
   },
   "options": {},
   "attributes": {
@@ -14,6 +14,18 @@
     "label": {
       "type": "string",
       "required": true
+    }
+  },
+  "config": {
+    "metadatas": {
+      "number": {
+        "edit": { "label": "Número" },
+        "list": { "label": "Número" }
+      },
+      "label": {
+        "edit": { "label": "Rótulo (ex.: Consultório, WhatsApp)" },
+        "list": { "label": "Rótulo" }
+      }
     }
   }
 }

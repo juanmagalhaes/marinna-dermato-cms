@@ -4,8 +4,8 @@
   "info": {
     "singularName": "doctor-profile",
     "pluralName": "doctor-profiles",
-    "displayName": "Doctor Profile",
-    "description": "Doctor's professional profile information"
+    "displayName": "Perfil da doutora",
+    "description": "Dados profissionais da Dra. Marinna (nome, CRM, RQE, texto de apresentação)"
   },
   "options": {
     "draftAndPublish": false
@@ -53,6 +53,46 @@
       "repeatable": false,
       "component": "shared.address",
       "required": false
+    }
+  },
+  "config": {
+    "metadatas": {
+      "fullName": {
+        "edit": { "label": "Nome completo" },
+        "list": { "label": "Nome" }
+      },
+      "crm": {
+        "edit": { "label": "CRM" },
+        "list": { "label": "CRM" }
+      },
+      "rqe": {
+        "edit": { "label": "RQE" },
+        "list": { "label": "RQE" }
+      },
+      "photo": {
+        "edit": { "label": "Foto" },
+        "list": { "label": "Foto" }
+      },
+      "miniBio": {
+        "edit": { "label": "Mini biografia" },
+        "list": { "label": "Bio" }
+      },
+      "phones": {
+        "edit": { "label": "Telefones" },
+        "list": { "label": "Telefones" }
+      },
+      "email": {
+        "edit": { "label": "E-mail" },
+        "list": { "label": "E-mail" }
+      },
+      "social": {
+        "edit": { "label": "Redes sociais" },
+        "list": { "label": "Social" }
+      },
+      "address": {
+        "edit": { "label": "Endereço" },
+        "list": { "label": "Endereço" }
+      }
     }
   }
 }

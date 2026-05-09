@@ -1,8 +1,9 @@
 {
   "collectionName": "components_shared_quotes",
   "info": {
-    "displayName": "Quote",
-    "icon": "indent"
+    "displayName": "Citação",
+    "icon": "indent",
+    "description": "Título e corpo de texto em destaque"
   },
   "options": {},
   "attributes": {
@@ -11,6 +12,18 @@
     },
     "body": {
       "type": "text"
+    }
+  },
+  "config": {
+    "metadatas": {
+      "title": {
+        "edit": { "label": "Título" },
+        "list": { "label": "Título" }
+      },
+      "body": {
+        "edit": { "label": "Texto" },
+        "list": { "label": "Texto" }
+      }
     }
   }
 }

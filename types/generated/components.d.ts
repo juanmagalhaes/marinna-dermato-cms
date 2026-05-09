@@ -3,8 +3,8 @@ import type { Schema, Struct } from '@strapi/strapi';
 export interface ArticleImageBlock extends Struct.ComponentSchema {
   collectionName: 'components_article_image_blocks';
   info: {
-    description: 'Image content block with caption and styling options';
-    displayName: 'Image Block';
+    description: 'Imagem com legenda, alinhamento, tamanho e link opcional';
+    displayName: 'Bloco de imagem';
   };
   attributes: {
     alignment: Schema.Attribute.Enumeration<
@@ -19,6 +19,10 @@ export interface ArticleImageBlock extends Struct.ComponentSchema {
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 500;
       }>;
+    customMaxWidth: Schema.Attribute.String &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 64;
+      }>;
     image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     link: Schema.Attribute.String;
     size: Schema.Attribute.Enumeration<['small', 'medium', 'large', 'full']> &
@@ -29,8 +33,8 @@ export interface ArticleImageBlock extends Struct.ComponentSchema {
 export interface ArticleQuoteBlock extends Struct.ComponentSchema {
   collectionName: 'components_article_quote_blocks';
   info: {
-    description: 'Quote content block with author and source information';
-    displayName: 'Quote Block';
+    description: 'Cita\u00E7\u00E3o com autor, fonte, estilo e alinhamento';
+    displayName: 'Bloco de cita\u00E7\u00E3o';
   };
   attributes: {
     alignment: Schema.Attribute.Enumeration<['left', 'center', 'right']> &
@@ -56,8 +60,8 @@ export interface ArticleQuoteBlock extends Struct.ComponentSchema {
 export interface ArticleTextBlock extends Struct.ComponentSchema {
   collectionName: 'components_article_text_blocks';
   info: {
-    description: 'HTML content block (TinyMCE), same editor as treatments';
-    displayName: 'Text Block';
+    description: 'Texto rico (TinyMCE), mesmo editor usado nos tratamentos';
+    displayName: 'Bloco de texto';
   };
   attributes: {
     alignment: Schema.Attribute.Enumeration<['left', 'center', 'right']> &
@@ -76,8 +80,8 @@ export interface ArticleTextBlock extends Struct.ComponentSchema {
 export interface ArticleVideoBlock extends Struct.ComponentSchema {
   collectionName: 'components_article_video_blocks';
   info: {
-    description: 'Video content block supporting Instagram, YouTube, Vimeo and uploads';
-    displayName: 'Video Block';
+    description: 'V\u00EDdeo incorporado (Instagram, YouTube, Vimeo ou URL de arquivo)';
+    displayName: 'Bloco de v\u00EDdeo';
   };
   attributes: {
     alignment: Schema.Attribute.Enumeration<
@@ -104,8 +108,8 @@ export interface ArticleVideoBlock extends Struct.ComponentSchema {
 export interface SharedAboutPreview extends Struct.ComponentSchema {
   collectionName: 'components_shared_about_previews';
   info: {
-    description: 'About section preview with title, text and image';
-    displayName: 'About Preview';
+    description: 'T\u00EDtulo, texto e imagem da se\u00E7\u00E3o Sobre na p\u00E1gina inicial';
+    displayName: 'Pr\u00E9via \u2014 Sobre';
     icon: 'user';
   };
   attributes: {
@@ -118,8 +122,8 @@ export interface SharedAboutPreview extends Struct.ComponentSchema {
 export interface SharedAddress extends Struct.ComponentSchema {
   collectionName: 'components_shared_addresses';
   info: {
-    description: 'Physical address with geolocation';
-    displayName: 'Address';
+    description: 'Logradouro, n\u00FAmero, bairro, cidade, estado, CEP e coordenadas';
+    displayName: 'Endere\u00E7o';
     icon: 'location-arrow';
   };
   attributes: {
@@ -137,8 +141,8 @@ export interface SharedAddress extends Struct.ComponentSchema {
 export interface SharedHero extends Struct.ComponentSchema {
   collectionName: 'components_shared_heroes';
   info: {
-    description: 'Hero section with title, subtitle and CTA';
-    displayName: 'Hero';
+    description: 'Destaque principal: t\u00EDtulo, subt\u00EDtulo, bot\u00F5es e imagem de fundo';
+    displayName: 'Hero (destaque)';
     icon: 'picture';
   };
   attributes: {
@@ -153,8 +157,8 @@ export interface SharedHero extends Struct.ComponentSchema {
 export interface SharedHighlight extends Struct.ComponentSchema {
   collectionName: 'components_shared_highlights';
   info: {
-    description: 'Highlight card with title, description and icon';
-    displayName: 'Highlight';
+    description: 'Card com t\u00EDtulo, descri\u00E7\u00E3o e \u00EDcone (lista na home)';
+    displayName: 'Card de destaque';
     icon: 'star';
   };
   attributes: {
@@ -167,8 +171,8 @@ export interface SharedHighlight extends Struct.ComponentSchema {
 export interface SharedLocationBlock extends Struct.ComponentSchema {
   collectionName: 'components_shared_location_blocks';
   info: {
-    description: 'Location section with map embed';
-    displayName: 'Location Block';
+    description: 'URL ou c\u00F3digo para incorporar o mapa (Google Maps, etc.)';
+    displayName: 'Bloco de localiza\u00E7\u00E3o';
     icon: 'location-arrow';
   };
   attributes: {
@@ -179,7 +183,8 @@ export interface SharedLocationBlock extends Struct.ComponentSchema {
 export interface SharedMedia extends Struct.ComponentSchema {
   collectionName: 'components_shared_media';
   info: {
-    displayName: 'Media';
+    description: 'Imagem, v\u00EDdeo ou documento \u00FAnico';
+    displayName: 'Arquivo de m\u00EDdia';
     icon: 'file-video';
   };
   attributes: {
@@ -190,8 +195,8 @@ export interface SharedMedia extends Struct.ComponentSchema {
 export interface SharedPhone extends Struct.ComponentSchema {
   collectionName: 'components_shared_phones';
   info: {
-    description: 'Phone contact information';
-    displayName: 'Phone';
+    description: 'N\u00FAmero e r\u00F3tulo (ex.: Consult\u00F3rio, WhatsApp)';
+    displayName: 'Telefone';
     icon: 'phone';
   };
   attributes: {
@@ -203,7 +208,8 @@ export interface SharedPhone extends Struct.ComponentSchema {
 export interface SharedQuote extends Struct.ComponentSchema {
   collectionName: 'components_shared_quotes';
   info: {
-    displayName: 'Quote';
+    description: 'T\u00EDtulo e corpo de texto em destaque';
+    displayName: 'Cita\u00E7\u00E3o';
     icon: 'indent';
   };
   attributes: {
@@ -215,8 +221,8 @@ export interface SharedQuote extends Struct.ComponentSchema {
 export interface SharedRichText extends Struct.ComponentSchema {
   collectionName: 'components_shared_rich_texts';
   info: {
-    description: '';
-    displayName: 'Rich text';
+    description: 'Conte\u00FAdo em editor rich text do Strapi';
+    displayName: 'Texto formatado';
     icon: 'align-justify';
   };
   attributes: {
@@ -227,7 +233,7 @@ export interface SharedRichText extends Struct.ComponentSchema {
 export interface SharedSeo extends Struct.ComponentSchema {
   collectionName: 'components_shared_seos';
   info: {
-    description: 'SEO metadata component for articles and pages';
+    description: 'Metadados para Google e redes (t\u00EDtulo, descri\u00E7\u00E3o, imagens Open Graph)';
     displayName: 'SEO';
   };
   attributes: {
@@ -267,8 +273,8 @@ export interface SharedSeo extends Struct.ComponentSchema {
 export interface SharedSlider extends Struct.ComponentSchema {
   collectionName: 'components_shared_sliders';
   info: {
-    description: '';
-    displayName: 'Slider';
+    description: 'V\u00E1rias imagens em sequ\u00EAncia (slider)';
+    displayName: 'Carrossel de imagens';
     icon: 'address-book';
   };
   attributes: {
@@ -279,8 +285,8 @@ export interface SharedSlider extends Struct.ComponentSchema {
 export interface SharedSocial extends Struct.ComponentSchema {
   collectionName: 'components_shared_socials';
   info: {
-    description: 'Social media links';
-    displayName: 'Social';
+    description: 'Links para Instagram, Facebook, LinkedIn e site';
+    displayName: 'Redes sociais';
     icon: 'link';
   };
   attributes: {

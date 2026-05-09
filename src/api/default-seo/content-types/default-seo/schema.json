@@ -4,8 +4,8 @@
   "info": {
     "singularName": "default-seo",
     "pluralName": "default-seos",
-    "displayName": "Default SEO",
-    "description": "Default SEO settings for the website"
+    "displayName": "SEO padrão do site",
+    "description": "Título, descrição e imagens padrão para motores de busca e redes sociais"
   },
   "options": {
     "draftAndPublish": false
@@ -52,6 +52,46 @@
       "multiple": false,
       "required": false,
       "allowedTypes": ["images"]
+    }
+  },
+  "config": {
+    "metadatas": {
+      "defaultTitle": {
+        "edit": { "label": "Título padrão (aba do navegador)" },
+        "list": { "label": "Título padrão" }
+      },
+      "description": {
+        "edit": { "label": "Descrição padrão (meta description)" },
+        "list": { "label": "Descrição" }
+      },
+      "siteName": {
+        "edit": { "label": "Nome do site (marca)" },
+        "list": { "label": "Nome do site" }
+      },
+      "ogTitle": {
+        "edit": { "label": "Título Open Graph (opcional)" },
+        "list": { "label": "OG título" }
+      },
+      "ogDescription": {
+        "edit": { "label": "Descrição Open Graph (opcional)" },
+        "list": { "label": "OG descrição" }
+      },
+      "twitterCard": {
+        "edit": { "label": "Tipo de card no Twitter/X" },
+        "list": { "label": "Twitter card" }
+      },
+      "keywords": {
+        "edit": { "label": "Palavras-chave (opcional)" },
+        "list": { "label": "Keywords" }
+      },
+      "openGraphImage": {
+        "edit": { "label": "Imagem Open Graph" },
+        "list": { "label": "Imagem OG" }
+      },
+      "twitterImage": {
+        "edit": { "label": "Imagem Twitter/X" },
+        "list": { "label": "Imagem Twitter" }
+      }
     }
   }
 }
