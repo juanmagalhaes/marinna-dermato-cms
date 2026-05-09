@@ -8,7 +8,8 @@
     "description": "Blog articles with dynamic content blocks"
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": true,
+    "reviewWorkflows": false
   },
   "pluginOptions": {},
   "attributes": {
@@ -32,13 +33,17 @@
       "required": false,
       "allowedTypes": ["images"]
     },
-    "publishedAt": {
-      "type": "datetime"
+    "categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "inversedBy": "articles"
     },
-    "status": {
-      "type": "enumeration",
-      "enum": ["draft", "preview", "published", "archived"],
-      "default": "draft"
+    "tags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag",
+      "inversedBy": "articles"
     },
     "seo": {
       "type": "component",
@@ -53,18 +58,6 @@
         "article.video-block",
         "article.quote-block"
       ]
-    },
-    "categories": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::category.category",
-      "inversedBy": "articles"
-    },
-    "tags": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::tag.tag",
-      "inversedBy": "articles"
     }
   }
 }

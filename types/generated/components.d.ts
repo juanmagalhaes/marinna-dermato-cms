@@ -56,14 +56,16 @@ export interface ArticleQuoteBlock extends Struct.ComponentSchema {
 export interface ArticleTextBlock extends Struct.ComponentSchema {
   collectionName: 'components_article_text_blocks';
   info: {
-    description: 'Rich text content block with WYSIWYG editor';
+    description: 'HTML content block (TinyMCE), same editor as treatments';
     displayName: 'Text Block';
   };
   attributes: {
     alignment: Schema.Attribute.Enumeration<['left', 'center', 'right']> &
       Schema.Attribute.DefaultTo<'left'>;
     backgroundColor: Schema.Attribute.String;
-    content: Schema.Attribute.RichText & Schema.Attribute.Required;
+    content: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.CustomField<'global::tinymce-html'>;
     padding: Schema.Attribute.Enumeration<
       ['none', 'small', 'medium', 'large']
     > &

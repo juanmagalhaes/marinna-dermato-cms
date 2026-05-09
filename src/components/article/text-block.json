@@ -2,12 +2,13 @@
   "collectionName": "components_article_text_blocks",
   "info": {
     "displayName": "Text Block",
-    "description": "Rich text content block with WYSIWYG editor"
+    "description": "HTML content block (TinyMCE), same editor as treatments"
   },
   "options": {},
   "attributes": {
     "content": {
-      "type": "richtext",
+      "type": "customField",
+      "customField": "global::tinymce-html",
       "required": true
     },
     "alignment": {

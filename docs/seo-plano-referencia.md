@@ -67,8 +67,8 @@ Documento único de prioridades, glossário e decisões. Detalhes de modelagem: 
 ### Fase blog (quando existir no Next)
 
 - **Índice** `/blog`: metadata própria (listagem de artigos); indexável; incluir **`/blog`** no **sitemap** além de cada **`/blog/[slug]`**.
-- **Público** `/blog/[slug]`: metadata por artigo, **`og:type: article`**, JSON-LD **`Article`**, canónico e indexação normais; listagens só `status: published`.
-- **Preview** `/blog/preview/[slug]`: artigos `status: preview`; **`noindex, nofollow`**; opcional header **`X-Robots-Tag: noindex, nofollow`**; opcional **redirect 308** para a URL pública se o artigo já estiver `published`.
+- **Público** `/blog/[slug]`: metadata por artigo, **`og:type: article`**, JSON-LD **`Article`**, canónico e indexação normais; listagens só versão **Published** (GraphQL `PUBLISHED`).
+- **Preview** `/blog/preview/[slug]`: versão **Draft** do Strapi (GraphQL `DRAFT` + token); **`noindex, nofollow`**; opcional **`X-Robots-Tag: noindex, nofollow`**.
 - **Navegação**: link para **`/blog`** no header (desktop + menu mobile) e no footer — **sem** links públicos para `/blog/preview/...`.
 - **Sitemap**: URLs públicas **`/blog`** + artigos; **excluir** `/blog/preview/*`.
 - **`robots.txt`**: em produção, **`Disallow: /blog/preview/`** (reforço).

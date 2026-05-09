@@ -15,7 +15,6 @@ module.exports = createCoreController('api::article.article', ({ strapi }) => ({
       ...query,
       filters: {
         ...query.filters,
-        status: 'published',
         publishedAt: {
           $notNull: true,
         },
@@ -45,7 +44,6 @@ module.exports = createCoreController('api::article.article', ({ strapi }) => ({
     const entity = await strapi.entityService.findMany('api::article.article', {
       filters: {
         slug,
-        status: 'published',
         publishedAt: {
           $notNull: true,
         },

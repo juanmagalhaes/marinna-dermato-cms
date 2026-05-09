@@ -139,7 +139,6 @@ async function seedBlogData() {
         title: 'Não Tome Minoxidil Antes de Saber Disso: Entenda a Queda Inicial',
         slug: 'minoxidil-queda-cabelo-inicio',
         excerpt: 'Descubra por que o cabelo cai no início do uso do minoxidil e como lidar com essa fase natural do tratamento.',
-        status: 'published',
         publishedAt: new Date().toISOString(),
         seo: {
           defaultTitle: 'Minoxidil: Queda de Cabelo no Início do Tratamento',

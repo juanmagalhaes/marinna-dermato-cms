@@ -36,7 +36,6 @@ module.exports = createCoreService('api::article.article', ({ strapi }) => ({
         id: {
           $ne: articleId,
         },
-        status: 'published',
         publishedAt: {
           $notNull: true,
         },

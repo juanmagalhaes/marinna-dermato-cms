@@ -4,22 +4,34 @@ Planeamento único para **CMS (Strapi)** e **webapp (Next.js)**. Alinhado ao SEO
 
 ---
 
-## Ciclo de vida e URLs (decisão de produto)
+## Guia rápido: Draft & Publish e o site
 
-Três estados visíveis no modelo editorial; **sem token na URL** — o slug em `/blog/preview/[slug]` é o definitivo.
+O modelo **Article** não usa campo editorial extra: só o **Draft & Publish** do Strapi.
 
-| Estado `status` | Comportamento no site |
-|-----------------|------------------------|
-| **`draft`** | Não existe rota pública. Conteúdo só no admin. |
-| **`preview`** | Apenas **`/blog/preview/[slug]`**. Homologação interna (ex.: partilha de link). |
-| **`published`** | **`/blog/[slug]`** — listagens, SEO, sitemap, comportamento normal. |
-| **`archived`** | Retirado do ar: **404** (ou redirecionamento futuro) em público e preview; permanece no CMS para histórico. |
+### Abas **Draft** e **Published**
 
-### Regra operacional com Draft & Publish (Strapi)
+| Aba | O que é |
+|-----|--------|
+| **Draft** | Rascunho (**Save** grava aqui). |
+| **Published** | Última versão **Publish** (live na API como `PUBLISHED`). |
 
-- Enquanto **`preview`** ou **`draft`**: manter o documento **não publicado** no workflow nativo do Strapi (*Save* / draft), até validação interna.
-- Ao passar a **`published`**: **Publicar** no Strapi e garantir `status: published`. Assim a **API pública anónima** não expõe rascunhos nem artigos em homologação.
-- A rota de preview no Next obtém artigos em **`preview`** via **`STRAPI_API_TOKEN`** (ou token de leitura dedicado) **apenas no servidor**, com `publicationState`/filtros adequados à versão do Strapi (consultar [documentação Draft & Publish](https://docs.strapi.io)).
+### Onde isto aparece no Next.js
+
+| URL | GraphQL | Quem vê |
+|-----|---------|---------|
+| `/blog`, `/blog/[slug]` | `articles_connection` + **`status: PUBLISHED`** | Público (sem token). |
+| `/blog/preview/[slug]` | `articles_connection` + **`status: DRAFT`** (mesmo `slug`) | Servidor Next com **`STRAPI_API_TOKEN`**. |
+
+**Fluxo:** edita na aba Draft → **Save** → abre `/blog/preview/[slug]` para homologar o rascunho (só enquanto **ainda não** houver versão Published com esse slug). **Publish** quando quiseres que `/blog/[slug]` exista. Se o artigo **já está publicado**, `/blog/preview/[slug]` **redireciona** para `/blog/[slug]` (URL canónica).
+
+### Botões **Save**, **Publish**, menu **…**
+
+| Ação | Efeito típico |
+|------|----------------|
+| **Save** | Grava o **Draft**. |
+| **Publish** | Atualiza a versão **Published**. |
+| **Unpublish** | Remove a versão publicada. |
+| **Discard changes** | Descarta alterações não guardadas nesta sessão. |
 
 ---
 
@@ -27,7 +39,7 @@ Três estados visíveis no modelo editorial; **sem token na URL** — o slug em 
 
 | API | Nome | Função |
 |-----|------|--------|
-| `api::article.article` | Article | Post do blog: slug, excerpt, imagem, `status`, `seo`, `blocks` (dynamic zone), categorias, tags. |
+| `api::article.article` | Article | Post do blog (Draft & Publish); slug, excerpt, imagem, `seo`, `blocks`, categorias, tags. |
 | `api::category.category` | Category | Organização; M2M com artigos. |
 | `api::tag.tag` | Tag | Etiquetas; M2M com artigos. |
 
@@ -47,8 +59,7 @@ Componente partilhado: **`shared.seo`** nos artigos (e alinhado ao Default SEO d
 - `slug` (uid, required) — Slug da URL (`/blog/[slug]` e `/blog/preview/[slug]`)
 - `excerpt` (text) — Resumo / lead
 - `featuredImage` (media) — Imagem de destaque
-- `publishedAt` (datetime) — Data de publicação (alinhada ao uso editorial; Strapi Draft & Publish também gere visibilidade na API)
-- `status` (enumeration, required, default `draft`) — `draft` \| `preview` \| `published` \| `archived`
+- `publishedAt` (datetime) — Data de publicação (uso editorial)
 - `seo` (component `shared.seo`) — Metadata por artigo
 - `blocks` (dynamic zone) — Blocos de conteúdo
 - `categories` (relation M2M) — Categorias
@@ -73,7 +84,9 @@ Componente partilhado: **`shared.seo`** nos artigos (e alinhado ao Default SEO d
 
 ### 1. Text Block (`article.text-block`)
 
-- `content` (richtext), `alignment`, `backgroundColor`, `padding`
+- `content` (custom field **TinyMCE** `global::tinymce-html`, mesmo padrão que `treatment.content`), `alignment`, `backgroundColor`, `padding`
+
+**Migração a partir de `richtext`:** blocos antigos podem estar guardados no formato do editor Strapi. Após este schema, convém **rever e gravar de novo** o conteúdo dos blocos de texto no admin (ou migrar manualmente) para garantir HTML válido no TinyMCE.
 
 ### 2. Image Block (`article.image-block`)
 
@@ -110,7 +123,7 @@ Igual ao padrão do site: `defaultTitle`, `description`, `siteName`, `keywords`,
 
 ### Papel Public (anónimo)
 
-- **`Article`**: permitir `find` / `findOne` **apenas** para registos que sejam **publicados no Strapi** e com **`status: published`**.
+- **`Article`**: permitir `find` / `findOne` **apenas** para registos **Published** no Strapi (Draft & Publish).
   - Se a UI de permissões do Strapi não permitir filtro composto, usar **policy customizada** ou **desativar** listagem pública de artigos e expor só via Next com token (BFF). Documentar a opção escolhida no deploy.
 - **`Category` / `Tag`**: conforme necessidade de listagens públicas (só categorias/tags que tenham artigos `published`, se quiserem evitar páginas vazias).
 
@@ -137,13 +150,13 @@ Documentação detalhada: `MarinnaDermato/docs/blog.md`.
 
 ### `/blog/[slug]` — artigo público
 
-- Buscar artigo com **`status: published`** + critérios Strapi publicados.
+- Buscar artigo com GraphQL **`status: PUBLISHED`** (versão publicada).
 - Metadata completa: `og:type: article`, JSON-LD `Article`, canónico, indexação normal.
 - **404** se não existir ou `archived`.
 
 ### `/blog/preview/[slug]` — preview interno
 
-- Buscar artigo com **`status: preview`** (token servidor).
+- Buscar artigo com GraphQL **`status: DRAFT`** (token no servidor).
 - **`metadata.robots`**: `{ index: false, follow: false }`.
 - **Opcional (recomendado)**: header de resposta **`X-Robots-Tag: noindex, nofollow`** (middleware ou `headers()` neste segmento — aceitar rota dinâmica se necessário).
 - **Opcional**: se o artigo já estiver **`published`**, **redirecionar 308** para `/blog/[slug]` (evita duplicar conteúdo indexável).
@@ -168,7 +181,7 @@ Documentação detalhada: `MarinnaDermato/docs/blog.md`.
 
 ### GraphQL / `lib/cms`
 
-- Queries públicas: filtro `status: published` (+ publicação Strapi).
+- Queries públicas: `status: PUBLISHED` no GraphQL.
 - Função ou query dedicada para **preview** (servidor + token), nunca importada em Client Components.
 
 ---
@@ -179,7 +192,7 @@ Os paths seguem o Strapi; exemplos conceituais:
 
 - Listagem pública filtrada: apenas `published`.
 - Detalhe por slug na rota pública: mesma regra.
-- Preview: mesma `collection` com auth e filtros `status: preview` + draft/publish conforme política.
+- Preview: mesma `collection` com token e **`status: DRAFT`** no GraphQL.
 
 ---
 
@@ -193,8 +206,7 @@ await strapi.entityService.create('api::article.article', {
     title: 'Cuidados com a Pele no Verão',
     slug: 'cuidados-pele-verao',
     excerpt: 'Dicas essenciais...',
-    status: 'preview',
-    // Manter não publicado no Strapi até validação; depois Publish + status published
+    // Homologação: só Save (Draft). Depois Publish no Strapi para o site público.
     seo: { /* shared.seo */ },
     blocks: [/* ... */],
   },
@@ -206,10 +218,9 @@ await strapi.entityService.create('api::article.article', {
 ```javascript
 const articles = await strapi.entityService.findMany('api::article.article', {
   filters: {
-    status: 'published',
     publishedAt: { $notNull: true },
   },
-  publicationState: 'live', // conforme API Strapi em uso
+  // Preferir API Document Service / publicationState conforme a vossa versão Strapi
   populate: { featuredImage: true, seo: true, categories: true, tags: true, blocks: { populate: '*' } },
   sort: { publishedAt: 'desc' },
 });
@@ -225,7 +236,7 @@ const articles = await strapi.entityService.findMany('api::article.article', {
 node scripts/seed-blog-data.js
 ```
 
-Cria categorias, tags e artigo de exemplo — atualizar o seed para usar `status` coerente (`preview` ou `published`) quando o script for revisto.
+Cria categorias, tags e artigo de exemplo — após criar, **Publish** no admin se quiseres o artigo no site público.
 
 ---
 
@@ -233,7 +244,7 @@ Cria categorias, tags e artigo de exemplo — atualizar o seed para usar `status
 
 | Área | Tarefa |
 |------|--------|
-| CMS | `status` com valor `preview`; políticas Public + token preview documentadas |
+| CMS | Draft & Publish; políticas Public + token para ler `DRAFT` no preview documentadas |
 | CMS | Fluxo editorial: draft/preview sem Publish Strapi até `published` |
 | Webapp | Rotas `app/blog/page.tsx`, `app/blog/[slug]`, `app/blog/preview/[slug]` |
 | Webapp | **Navegação:** link `/blog` no header (desktop + mobile) e footer (`MarinnaDermato/docs/blog.md`) |
@@ -249,7 +260,7 @@ Cria categorias, tags e artigo de exemplo — atualizar o seed para usar `status
 
 1. Artigos públicos a partir do CMS com filtro `published`.
 2. Blocos dinâmicos mapeados para componentes React.
-3. Rich text com estilos acessíveis (reutilizar padrões tipo `CmsRichText` onde fizer sentido).
+3. HTML do TinyMCE nos blocos de texto (mesmo fluxo que tratamentos): render com `CmsRichText` / parser seguro.
 4. Imagens otimizadas (Next/Image) e lazy loading onde aplicável.
 5. Embeds de vídeo conforme bloco.
 6. SEO a partir de `shared.seo` + `og:type: article` para URLs públicas.
