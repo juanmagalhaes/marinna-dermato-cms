@@ -107,7 +107,7 @@ export interface SharedAboutPreview extends Struct.ComponentSchema {
     icon: 'user';
   };
   attributes: {
-    image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    image: Schema.Attribute.Media<'images'>;
     text: Schema.Attribute.RichText & Schema.Attribute.Required;
     title: Schema.Attribute.String & Schema.Attribute.Required;
   };
@@ -142,7 +142,7 @@ export interface SharedHero extends Struct.ComponentSchema {
   attributes: {
     ctaLabel: Schema.Attribute.String & Schema.Attribute.Required;
     ctaTarget: Schema.Attribute.String & Schema.Attribute.Required;
-    heroImage: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    heroImage: Schema.Attribute.Media<'images'>;
     subtitle: Schema.Attribute.Text & Schema.Attribute.Required;
     title: Schema.Attribute.String & Schema.Attribute.Required;
   };

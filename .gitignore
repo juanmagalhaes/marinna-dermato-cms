@@ -131,3 +131,6 @@ build
 .strapi-cloud.json
 
 tmp/
+
+# Generated from npm tinymce (see scripts/sync-tinymce-to-public.mjs)
+public/tinymce/

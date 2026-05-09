@@ -487,6 +487,7 @@ export interface ApiDefaultSeoDefaultSeo extends Struct.SingleTypeSchema {
     defaultTitle: Schema.Attribute.String & Schema.Attribute.Required;
     description: Schema.Attribute.Text & Schema.Attribute.Required;
     keywords: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::default-seo.default-seo'
@@ -520,8 +521,7 @@ export interface ApiDoctorProfileDoctorProfile extends Struct.SingleTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
-    address: Schema.Attribute.Component<'shared.address', false> &
-      Schema.Attribute.Required;
+    address: Schema.Attribute.Component<'shared.address', false>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -625,8 +625,7 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
       'oneToMany',
       'api::treatment.treatment'
     >;
-    hero: Schema.Attribute.Component<'shared.hero', false> &
-      Schema.Attribute.Required;
+    hero: Schema.Attribute.Component<'shared.hero', false>;
     highlights: Schema.Attribute.Component<'shared.highlight', true>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -670,6 +669,14 @@ export interface ApiPublicationPublication extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    sortOrder: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<0>;
     title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -677,8 +684,8 @@ export interface ApiPublicationPublication extends Struct.CollectionTypeSchema {
     year: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.SetMinMaxLength<{
-        minLength: 4;
         maxLength: 4;
+        minLength: 4;
       }>;
   };
 }
@@ -733,7 +740,9 @@ export interface ApiTreatmentTreatment extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    content: Schema.Attribute.RichText & Schema.Attribute.Required;
+    content: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.CustomField<'global::tinymce-html'>;
     contraindications: Schema.Attribute.JSON;
     coverImage: Schema.Attribute.Media<'images'>;
     createdAt: Schema.Attribute.DateTime;
@@ -748,6 +757,14 @@ export interface ApiTreatmentTreatment extends Struct.CollectionTypeSchema {
     metaDescription: Schema.Attribute.Text;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
+    sortOrder: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<0>;
     summary: Schema.Attribute.Text & Schema.Attribute.Required;
     title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
