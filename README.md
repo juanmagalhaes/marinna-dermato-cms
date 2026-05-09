@@ -33,7 +33,7 @@ yarn build
 ## Conteúdo e Modelagem
 
 - Content Types:
-  - `Article` (com Dynamic Zone: `article.text-block`, `image-block`, `video-block`, `quote-block`)
+  - `Article` (com Dynamic Zone: `article.text-block`, `image-block`, `video-block`, `quote-block`; ciclo de vida `draft` / `preview` / `published` / `archived` — ver `docs/blog-structure.md`)
   - `Category`, `Tag`
   - `Default SEO`
 - Componentes:

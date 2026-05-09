@@ -66,7 +66,14 @@ Documento único de prioridades, glossário e decisões. Detalhes de modelagem: 
 
 ### Fase blog (quando existir no Next)
 
-- Metadata por rota de artigo, `og:type: article`, JSON-LD `Article`, `noindex` em rascunhos, listagens — ver tabela histórica no Git ou arquivar em secção “Futuro” se necessário.
+- **Índice** `/blog`: metadata própria (listagem de artigos); indexável; incluir **`/blog`** no **sitemap** além de cada **`/blog/[slug]`**.
+- **Público** `/blog/[slug]`: metadata por artigo, **`og:type: article`**, JSON-LD **`Article`**, canónico e indexação normais; listagens só `status: published`.
+- **Preview** `/blog/preview/[slug]`: artigos `status: preview`; **`noindex, nofollow`**; opcional header **`X-Robots-Tag: noindex, nofollow`**; opcional **redirect 308** para a URL pública se o artigo já estiver `published`.
+- **Navegação**: link para **`/blog`** no header (desktop + menu mobile) e no footer — **sem** links públicos para `/blog/preview/...`.
+- **Sitemap**: URLs públicas **`/blog`** + artigos; **excluir** `/blog/preview/*`.
+- **`robots.txt`**: em produção, **`Disallow: /blog/preview/`** (reforço).
+- **Manifest / PWA**: sem rotas de preview.
+- **CMS**: token só no servidor para ler preview; API pública só `published`. Detalhes: `blog-structure.md` e `MarinnaDermato/docs/blog.md`.
 
 ### Aprimorar depois
 

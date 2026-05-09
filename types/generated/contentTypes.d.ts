@@ -414,7 +414,9 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     seo: Schema.Attribute.Component<'shared.seo', false>;
     slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
-    status: Schema.Attribute.Enumeration<['draft', 'published', 'archived']> &
+    status: Schema.Attribute.Enumeration<
+      ['draft', 'preview', 'published', 'archived']
+    > &
       Schema.Attribute.DefaultTo<'draft'>;
     tags: Schema.Attribute.Relation<'manyToMany', 'api::tag.tag'>;
     title: Schema.Attribute.String &
