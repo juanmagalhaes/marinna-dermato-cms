@@ -28,8 +28,8 @@ module.exports = createCoreService('api::article.article', ({ strapi }) => ({
 
     if (!article) return [];
 
-    const categoryIds = article.categories?.map(cat => cat.id) || [];
-    const tagIds = article.tags?.map(tag => tag.id) || [];
+    const categoryIds = article.categories?.map((cat) => cat.id) || [];
+    const tagIds = article.tags?.map((tag) => tag.id) || [];
 
     const relatedArticles = await strapi.entityService.findMany('api::article.article', {
       filters: {

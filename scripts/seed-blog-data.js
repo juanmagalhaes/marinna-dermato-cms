@@ -135,11 +135,36 @@ async function seedBlogData() {
     });
 
     if (existingArticle.length === 0) {
+      const capilarRows = await strapi.entityService.findMany(
+        'api::category.category',
+        { filters: { slug: 'tratamento-capilar' } }
+      )
+      const tratamentosRows = await strapi.entityService.findMany(
+        'api::category.category',
+        { filters: { slug: 'tratamentos' } }
+      )
+      const categoryIds = [
+        capilarRows[0]?.id,
+        tratamentosRows[0]?.id,
+      ].filter(Boolean)
+      if (categoryIds.length === 0) {
+        throw new Error(
+          'No categories found (e.g. tratamento-capilar). Run the categories loop above first.'
+        )
+      }
+      const tagRows = await strapi.entityService.findMany('api::tag.tag', {
+        filters: {
+          slug: { $in: ['minoxidil', 'queda-de-cabelo', 'tratamento-capilar'] },
+        },
+      })
+
       const articleData = {
         title: 'Não Tome Minoxidil Antes de Saber Disso: Entenda a Queda Inicial',
         slug: 'minoxidil-queda-cabelo-inicio',
         excerpt: 'Descubra por que o cabelo cai no início do uso do minoxidil e como lidar com essa fase natural do tratamento.',
         publishedAt: new Date().toISOString(),
+        categories: categoryIds,
+        tags: tagRows.map((t) => t.id),
         seo: {
           defaultTitle: 'Minoxidil: Queda de Cabelo no Início do Tratamento',
           description: 'Entenda por que o cabelo cai no início do uso do minoxidil e como lidar com essa fase natural do tratamento capilar.',

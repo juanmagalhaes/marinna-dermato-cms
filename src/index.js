@@ -81,7 +81,11 @@ async function syncContentManagerLabelsFromSchema(strapi) {
   }
 }
 
-/** Field order in Content Manager edit view (categories & tags before SEO, then blocks). */
+/**
+ * Field order in Content Manager edit view.
+ * Strapi appends *new* attributes to the end of the stored layout (see syncLayouts);
+ * keep categories + tags next to each other and **before** blocks so the admin matches the model.
+ */
 const ARTICLE_EDIT_FIELD_ORDER = [
   'title',
   'slug',
@@ -162,8 +166,7 @@ module.exports = {
 
     const cm = strapi.plugin('content-manager').service('content-types');
     const conf = await cm.findConfiguration(contentType);
-    const edit = conf?.layouts?.edit;
-    if (!edit || !Array.isArray(edit)) return;
+    const edit = Array.isArray(conf?.layouts?.edit) ? conf.layouts.edit : [];
 
     const fieldSizes = strapi.plugin('content-manager').service('field-sizes');
     const newEdit = rebuildArticleEditLayout(contentType, edit, fieldSizes);

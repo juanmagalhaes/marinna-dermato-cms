@@ -4,6 +4,12 @@ Planeamento único para **CMS (Strapi)** e **webapp (Next.js)**. Alinhado ao SEO
 
 ---
 
+## Migração: várias categorias → uma categoria obrigatória
+
+Se a base já tinha artigos com **M2M** `categories`, após atualizar o schema o Strapi aplica nova coluna **`category`**. **Cada artigo publicado precisa de uma categoria** escolhida no Admin (ou via script). Artigos sem categoria podem falhar validação ao gravar.
+
+---
+
 ## Guia rápido: Draft & Publish e o site
 
 O modelo **Article** não usa campo editorial extra: só o **Draft & Publish** do Strapi.
@@ -19,10 +25,11 @@ O modelo **Article** não usa campo editorial extra: só o **Draft & Publish** d
 
 | URL | GraphQL | Quem vê |
 |-----|---------|---------|
-| `/blog`, `/blog/[slug]` | `articles_connection` + **`status: PUBLISHED`** | Público (sem token). |
+| `/blog`, `/blog/[categoria]/[slug]` | `articles_connection` + **`status: PUBLISHED`** | Público (sem token). |
+| `/blog/[slug]` (legado) | — | **308** para `/blog/[categoria]/[slug]`. |
 | `/blog/preview/[slug]` | `articles_connection` + **`status: DRAFT`** (mesmo `slug`) | Servidor Next com **`STRAPI_API_TOKEN`**. |
 
-**Fluxo:** edita na aba Draft → **Save** → abre `/blog/preview/[slug]` para homologar o rascunho (só enquanto **ainda não** houver versão Published com esse slug). **Publish** quando quiseres que `/blog/[slug]` exista. Se o artigo **já está publicado**, `/blog/preview/[slug]` **redireciona** para `/blog/[slug]` (URL canónica).
+**Fluxo:** edita na aba Draft → **Save** → abre `/blog/preview/[slug]` para homologar o rascunho (só enquanto **ainda não** houver versão Published com esse slug). **Publish** quando quiseres que o artigo exista em **`/blog/:categoria/:slug`**. Se o artigo **já está publicado**, `/blog/preview/[slug]` **redireciona** para a URL canónica com categoria.
 
 ### Botões **Save**, **Publish**, menu **…**
 
@@ -39,8 +46,8 @@ O modelo **Article** não usa campo editorial extra: só o **Draft & Publish** d
 
 | API | Nome | Função |
 |-----|------|--------|
-| `api::article.article` | Article | Post do blog (Draft & Publish); slug, excerpt, imagem, `seo`, `blocks`, categorias, tags. |
-| `api::category.category` | Category | Organização; M2M com artigos. |
+| `api::article.article` | Article | Post do blog (Draft & Publish); slug, excerpt, imagem, `seo`, `blocks`, **categoria** (obrigatória), tags. |
+| `api::category.category` | Category | Organização; **1 categoria obrigatória** por artigo (M2O). |
 | `api::tag.tag` | Tag | Etiquetas; M2M com artigos. |
 
 Componente partilhado: **`shared.seo`** nos artigos (e alinhado ao Default SEO do site).
@@ -56,13 +63,13 @@ Componente partilhado: **`shared.seo`** nos artigos (e alinhado ao Default SEO d
 #### Fields
 
 - `title` (string, required) — Título
-- `slug` (uid, required) — Slug da URL (`/blog/[slug]` e `/blog/preview/[slug]`)
+- `slug` (uid, required) — Slug do artigo na URL (`/blog/[categoria]/[slug]` e `/blog/preview/[slug]`)
 - `excerpt` (text) — Resumo / lead
 - `featuredImage` (media) — Imagem de destaque
 - `publishedAt` (datetime) — Data de publicação (uso editorial)
 - `seo` (component `shared.seo`) — Metadata por artigo
 - `blocks` (dynamic zone) — Blocos de conteúdo
-- `categories` (relation M2M) — Categorias
+- `category` (relation **manyToOne**, **required**) — Uma categoria por artigo (slug da categoria entra no path público)
 - `tags` (relation M2M) — Tags
 
 #### Slug
@@ -146,20 +153,21 @@ Documentação detalhada: `MarinnaDermato/docs/blog.md`.
 ### `/blog` — página inicial do blog
 
 - Listagem de artigos **`published`** (ver detalhes e navegação global em `MarinnaDermato/docs/blog.md`).
-- **Sitemap:** incluir o path **`/blog`** além de cada **`/blog/[slug]`**.
+- **Sitemap:** incluir o path **`/blog`** além de cada **`/blog/[categoria]/[slug]`**.
 
-### `/blog/[slug]` — artigo público
+### `/blog/[categoria]/[slug]` — artigo público (canónico)
 
-- Buscar artigo com GraphQL **`status: PUBLISHED`** (versão publicada).
+- Buscar artigo com GraphQL **`status: PUBLISHED`** e filtro por **slug do artigo + slug da categoria**.
 - Metadata completa: `og:type: article`, JSON-LD `Article`, canónico, indexação normal.
-- **404** se não existir ou `archived`.
+- **`/blog/[slug]`** (um segmento): redirecionar **308** para a URL com categoria.
+- **404** se não existir ou categoria não coincidir (exceto redirect quando só o slug bate).
 
 ### `/blog/preview/[slug]` — preview interno
 
 - Buscar artigo com GraphQL **`status: DRAFT`** (token no servidor).
 - **`metadata.robots`**: `{ index: false, follow: false }`.
 - **Opcional (recomendado)**: header de resposta **`X-Robots-Tag: noindex, nofollow`** (middleware ou `headers()` neste segmento — aceitar rota dinâmica se necessário).
-- **Opcional**: se o artigo já estiver **`published`**, **redirecionar 308** para `/blog/[slug]` (evita duplicar conteúdo indexável).
+- **Opcional**: se o artigo já estiver **`published`**, **redirecionar 308** para **`/blog/[categoria]/[slug]`** (evita duplicar conteúdo indexável).
 - **404** para `draft`, `archived` ou slug inexistente.
 
 ### Listagens (`/blog`, destaques, etc.)
@@ -168,7 +176,7 @@ Documentação detalhada: `MarinnaDermato/docs/blog.md`.
 
 ### Sitemap
 
-- Incluir **`/blog`** (índice) e **somente** URLs **`/blog/[slug]`** com `published`.
+- Incluir **`/blog`** (índice) e **somente** URLs **`/blog/[categoria]/[slug]`** com `published`.
 - **Não** incluir `/blog/preview/*`.
 
 ### `robots.txt`
@@ -221,7 +229,7 @@ const articles = await strapi.entityService.findMany('api::article.article', {
     publishedAt: { $notNull: true },
   },
   // Preferir API Document Service / publicationState conforme a vossa versão Strapi
-  populate: { featuredImage: true, seo: true, categories: true, tags: true, blocks: { populate: '*' } },
+  populate: { featuredImage: true, seo: true, category: true, tags: true, blocks: { populate: '*' } },
   sort: { publishedAt: 'desc' },
 });
 ```
@@ -246,12 +254,12 @@ Cria categorias, tags e artigo de exemplo — após criar, **Publish** no admin 
 |------|--------|
 | CMS | Draft & Publish; políticas Public + token para ler `DRAFT` no preview documentadas |
 | CMS | Fluxo editorial: draft/preview sem Publish Strapi até `published` |
-| Webapp | Rotas `app/blog/page.tsx`, `app/blog/[slug]`, `app/blog/preview/[slug]` |
+| Webapp | Rotas `app/blog/page.tsx`, `app/blog/[categoria]/[slug]`, `app/blog/[slug]` (redirect), `app/blog/preview/[slug]` |
 | Webapp | **Navegação:** link `/blog` no header (desktop + mobile) e footer (`MarinnaDermato/docs/blog.md`) |
 | Webapp | `STRAPI_API_TOKEN` só servidor; queries GraphQL/REST |
 | Webapp | Renderizar dynamic zone (blocos) + rich text; tipos em `types/generated/components.d.ts` |
 | Webapp | SEO índice `/blog` + artigo + JSON-LD `Article`; preview com `noindex` + opcional `X-Robots-Tag` |
-| Webapp | Sitemap: `/blog` + slugs; sem preview; `robots.txt` com `Disallow: /blog/preview/` |
+| Webapp | Sitemap: `/blog` + `/blog/:categoria/:slug`; sem preview; `robots.txt` com `Disallow: /blog/preview/` |
 | Webapp | Sem links de preview na UI pública; manifest sem preview |
 
 ---
